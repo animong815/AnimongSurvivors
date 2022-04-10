@@ -6,7 +6,6 @@ public class PlayManager : MonoBehaviour
 {
 	public static PlayManager ins;
 
-	public Camera cam3d;
 	public Camera cam2d;
 	public Canvas canvas;
 
@@ -15,7 +14,6 @@ public class PlayManager : MonoBehaviour
 
 	public ADManager mgrAD;
 	public PlayUI ui;
-	public PlayStage stage;
 	public Player player;
 	public PopupLoaing loading;
 
@@ -83,11 +81,7 @@ public class PlayManager : MonoBehaviour
 		ui.btnLogin.btn.onClick.AddListener(SetLogin);
 		
 		player.obj.SetActive(false);
-		stage.birdPool.prefab.obj.SetActive(false);
-		stage.linePool.prefab.obj.SetActive(false);
-		stage.windPool.prefab.obj.SetActive(false);
-		stage.cloudPool.Init();
-
+		
 		ui.txtCoin.text = string.Empty;
 		ui.txtDistance.text = string.Empty;
 		ui.txtTopDistance.text = string.Empty;
@@ -95,7 +89,6 @@ public class PlayManager : MonoBehaviour
 
 		ui.objTopDistance.SetActive(false);
 		ui.objCoin.SetActive(false);
-		ui.objGuide.SetActive(false);
 
 		//CloudOnce.Cloud.OnCloudLoadComplete += LoadCloud;
 		CloudOnce.Cloud.OnInitializeComplete += CloudInitComplete;
@@ -143,22 +136,11 @@ public class PlayManager : MonoBehaviour
 
 	private void InitUI()
 	{
-		//CloudOnce.Cloud.CloudSaveEnabled = true;
-		//CloudOnce.Cloud.CloudSaveEnabled = false;
-
 		ui.btnRanking.obj.SetActive(true);
 		ui.btnChar.obj.SetActive(true);
-		//ui.btnOption.obj.SetActive(true);
 
 		player.obj.SetActive(true);
 
-		stage.birdPool.prefab.obj.SetActive(true);
-		stage.linePool.prefab.obj.SetActive(true);
-		stage.windPool.prefab.obj.SetActive(true);
-
-		//ui.objGuide.SetActive(true);
-
-		//InitPlay(true);
 		is_play = true;
 	}
 
@@ -228,50 +210,25 @@ public class PlayManager : MonoBehaviour
 	{
 		if (isFirst)
 		{
-			stage.Init();
 			ui.Init();
-			stage.obj.SetActive(false);
-			//ui.objGuide.SetActive(false);
 		}
 		else
 		{
-			stage.obj.SetActive(true);
-			
-			stage.tran.localPosition = new Vector3(0f, 10f, 0f);
-			LeanTween.moveLocalY(stage.obj, 0f, 0.5f).setEaseOutQuart().setOnComplete(()=> 
+			if (is_showGuide == false)
 			{
-				if (is_showGuide == false)
-				{
-					ui.objGuide.SetActive(true);
-					mgrAD.Init();
-				}
-				is_showGuide = true;
-			});
-
+				mgrAD.Init();
+			}
+			is_showGuide = true;
 			is_init = true;
-			stage.birdPool.ReturnViewAll();
-			stage.windPool.ReturnViewAll();
-			stage.cloudPool.InitCloud();
-			stage.linePool.InitLine(isStartY);
-			stage.ground.Init(isStartY);
 		}
 		show_ad = 0;
 		player.Init();
-		ui.InitData();
-		stage.linePool.actLine.FirstTake();
-		
-		//player.obj.SetActive(true);
-		//stage.linePool.line.obj.SetActive(true);
+		ui.InitData();		
 	}
 	
     void Update()
     {
 		if (is_init == false) return;
-
-		stage.linePool.UpdateLine();
-		stage.birdPool.UpdateBird();
-		stage.windPool.UpdateWind();
-		stage.cloudPool.UpdateCloud();
 
 		if (ui.btnRetry.obj.activeSelf == true)
 		{
@@ -279,17 +236,6 @@ public class PlayManager : MonoBehaviour
 			return;
 		}
 		player.UpdatePlayer();
-
-		/*
-		 	deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-			nFPS = Mathf.CeilToInt(1.0f / deltaTime);
-			if (backFPS != nFPS)
-			{
-				//str = string.Format(STR_NUM, Mathf.CeilToInt(1.0f / deltaTime));
-				txtFPS.text = nFPS.ToString();
-				backFPS = nFPS;
-			}
-		 */
 	}
 
 	public void GameOver()
@@ -304,15 +250,9 @@ public class PlayManager : MonoBehaviour
 			ui.txtDistanceTop.text = string.Format(STR_TOP_DISTANCE, ui.topScore);
 		}
 
-		//CloudOnce.Leaderboards.HigeScore.SubmitScore(ui.GetDistance());
 		CloudOnce.Cloud.Leaderboards.SubmitScore(STR_LEADER, ui.GetDistance());
-		//CloudOnce.CloudVariables.Coin = ui.GetCoin();
-
-		//CloudOnce.Cloud.OnCloudSaveComplete += ShowRetryUI;
 		CloudOnce.Cloud.Storage.Save();
 		ShowRetryUI(true);
-		//Init(false);
-		//SceneManager.ins.LoadScene(SceneManager.SCENE.LOBBY);
 	}
 
 	private void ShowRetryUI(bool value)
@@ -327,7 +267,6 @@ public class PlayManager : MonoBehaviour
 		
 		ui.btnChar.obj.SetActive(false);
 		ui.btnRanking.obj.SetActive(false);
-		ui.objGuide.SetActive(false);
 
 		ui.InitRetryUI();
 	}
@@ -337,21 +276,6 @@ public class PlayManager : MonoBehaviour
 		Init(false, true);
 	}
 	/*
-	public void OnApplicationPause(bool pause)
-	{
-		if (pause == true)
-		{
-			//CloudOnce.Cloud.OnCloudSaveComplete += ShowRetryUI;
-			CloudOnce.Cloud.Storage.Save();
-		}
-	}
-	public void OnApplicationQuit()
-	{
-		//CloudOnce.Cloud.OnCloudSaveComplete += ShowRetryUI;
-		CloudOnce.Cloud.Storage.Save();
-	}
-	*/
-
 	public Vector3 Get3Dto2D(Vector3 vec)
 	{
 		vec = cam3d.WorldToScreenPoint(vec);
@@ -375,4 +299,5 @@ public class PlayManager : MonoBehaviour
 
 		return vec;
 	}
+	*/
 }

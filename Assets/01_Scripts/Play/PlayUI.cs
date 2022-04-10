@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayUI : MonoBehaviour
 {
 	public ButtonObject btnHitArea;
 
-	public UnityEngine.UI.Text txtDistance;
-	public UnityEngine.UI.Text txtDistanceTop;
+	public Text txtDistance;
+	public Text txtDistanceTop;
 
-	public UnityEngine.UI.Text txtCoin;
-	public UnityEngine.UI.Text txtTopDistance;
+	public Text txtCoin;
+	public Text txtTopDistance;
 	
 	public GameObject objIngame;
 	public GameObject objMain;
@@ -25,7 +23,6 @@ public class PlayUI : MonoBehaviour
 	public Image imgRetryTime;
 	public ButtonObject btnRetryNow;
 	
-
 	public ButtonObject btnLogin;
 	public ButtonObject btnGuest;
 
@@ -35,9 +32,6 @@ public class PlayUI : MonoBehaviour
 	public ButtonObject btnOption;
 
 	public ButtonObject btnPause;
-
-	public GameObject objGuide;
-	public RectTransform rectGuide;
 
 	public UICharacter character;
 
@@ -88,21 +82,8 @@ public class PlayUI : MonoBehaviour
 	
 	public void InitVariables()
 	{
-		//objGuide.SetActive(true);
-		//rectGuide.localPosition = PlayManager.ins.get
-		//PlayManager.ins.player.tranPoint0.position;
-		
-		Vector3 vec = PlayManager.ins.cam3d.WorldToScreenPoint(PlayManager.ins.player.tranPoint1.position);
-		vec.x -= PlayManager.ins.cam2d.pixelWidth * 0.5f;
-		vec.y -= PlayManager.ins.cam2d.pixelHeight * 0.5f;
-		vec.x /= PlayManager.ins.canvas.scaleFactor;
-		vec.y /= PlayManager.ins.canvas.scaleFactor;
-		vec.z = 0f;
-		rectGuide.localPosition = vec;
-		
-		cloudCoin = new CloudOnce.CloudPrefs.CloudInt("Coin", CloudOnce.PersistenceType.Latest);//CloudOnce.CloudVariables.Coin;
+		cloudCoin = new CloudOnce.CloudPrefs.CloudInt("Coin", CloudOnce.PersistenceType.Latest);
 		UpdateCoin();
-
 		cloudScore = new CloudOnce.CloudPrefs.CloudInt("Score", CloudOnce.PersistenceType.Latest);
 		topScore = topScore;
 		txtTopDistance.text = string.Format(PlayManager.STR_DISTANCE, topScore);
@@ -117,7 +98,6 @@ public class PlayUI : MonoBehaviour
 	{
 		distance = -1;
 		UpdateDistance();
-		//UpdateCoin();
 	}
 
 	private void PressHit(bool value)
@@ -136,8 +116,6 @@ public class PlayUI : MonoBehaviour
 			return;
 		}
 		if (objMain.activeSelf) return;
-
-		PlayManager.ins.stage.CheckLine(value);
 	}
 
 	public void AddCoin()
@@ -177,10 +155,6 @@ public class PlayUI : MonoBehaviour
 		timeRetryWaitEnd = PlayManager.ins.data.ad_wait_time;
 
 		btnRetry.obj.SetActive(true);
-		if (PlayManager.ins.stage.linePool != null
-			&& PlayManager.ins.stage.linePool.jump_index != -1
-			&& PlayManager.ins.show_ad < PlayManager.ins.data.ad_cnt
-			&& PlayManager.ins.mgrAD.IsLoadAd()) btnRetryNow.obj.SetActive(true);
 	}
 
 	public void UpdateRetryTime() 
@@ -219,20 +193,13 @@ public class PlayUI : MonoBehaviour
 
 	private void ClickRetryNow()
 	{
-		//ca-app-pub-3940256099942544/5224354917
-//#if UNITY_EDITOR
-//		RetryNow();
-//#else
 		PlayManager.ins.mgrAD.ShowAd();
-//#endif
 	}
 
 	public void RetryNow()
 	{
 		PlayManager.ins.show_ad++;
-		PlayManager.ins.stage.linePool.CreateLine(true);
 		PlayManager.ins.player.Init(true);
-		PlayManager.ins.stage.linePool.actLine.FirstTake();
 
 		btnRetry.obj.SetActive(false);
 		btnRetryNow.obj.SetActive(false);
@@ -242,7 +209,6 @@ public class PlayUI : MonoBehaviour
 	private void ClickRanking()
 	{
 		CloudOnce.Cloud.Leaderboards.ShowOverlay();
-		//CloudOnce.Leaderboards.HigeScore.ShowOverlay();
 	}
 
 	private void ClickCharacter() 
