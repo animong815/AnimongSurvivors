@@ -19,7 +19,7 @@ public class ADManager : MonoBehaviour
 	
 	public void Init()
 	{
-		
+		/*
 		MobileAds.Initialize((initStatus) => 
 		{
 			Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
@@ -43,22 +43,26 @@ public class ADManager : MonoBehaviour
 			CreateAndLoadRewardedAd(); 
 		});
 		//CreateAndLoadRewardedAd();
+		*/
 	}
 
 	public bool IsLoadAd() { return rewardedAd.IsLoaded();	}
 
 	public void ShowAd()
 	{
+		/*
 		Debug.Log("ShowAd");
 		if (rewardedAd.IsLoaded()) // 광고가 로드 되었을 때
 		{
 			Debug.Log("rewardedAd.Show");
 			rewardedAd.Show(); // 광고 보여주기
 		}
+		*/
 	}
 
 	public void CreateAndLoadRewardedAd() // 광고 다시 로드하는 함수
 	{
+		/*
 		Debug.Log("CreateAndLoadRewardedAd::" + PlayManager.ins.data.ad_id);
 		AD_KEY = PlayManager.ins.data.ad_id;
 
@@ -86,8 +90,10 @@ public class ADManager : MonoBehaviour
 		AdRequest request = new AdRequest.Builder().Build();
 		
 		rewardedAd.LoadAd(request);
+		*/
 	}
 
+	/*
 	public void HandleRewardedAdClosed(object sender, EventArgs args)
 	{  // 사용자가 광고를 닫았을 때
 		CreateAndLoadRewardedAd();  // 광고 다시 로드
@@ -112,5 +118,5 @@ public class ADManager : MonoBehaviour
 	{
 		Debug.Log("AD Load Complete");
 	}
-
+	*/
 }
