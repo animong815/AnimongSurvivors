@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
+//using GoogleMobileAds.Api;
 using System;
 
 public class ADManager : MonoBehaviour
 {
-	private RewardedAd rewardedAd;
+	//private RewardedAd rewardedAd;
 
 	/// app id
 	//test
@@ -46,7 +46,7 @@ public class ADManager : MonoBehaviour
 		*/
 	}
 
-	public bool IsLoadAd() { return rewardedAd.IsLoaded();	}
+	public bool IsLoadAd() { return true; }// rewardedAd.IsLoaded();	}
 
 	public void ShowAd()
 	{
