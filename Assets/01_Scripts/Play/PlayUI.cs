@@ -47,6 +47,18 @@ public class PlayUI : MonoBehaviour
 	
 	private CloudOnce.CloudPrefs.CloudInt cloudCoin;
 
+	public GameObject goControl;
+	public RectTransform rtControl;
+	public RectTransform rtDrag;
+
+	public RectTransform rtBgTile;
+
+	private bool isPress = false;
+
+	private Vector3 vec3;
+	private float drag_distance;
+	private const float MAX_DRAG = 1f;
+
 	private int coin
 	{
 		get { return cloudCoin.Value; }
@@ -76,6 +88,8 @@ public class PlayUI : MonoBehaviour
 
 		btnRetry.obj.SetActive(false);
 		btnRetryNow.obj.SetActive(false);
+
+		goControl.SetActive(false);
 
 		character.Init();
 	}
@@ -116,6 +130,97 @@ public class PlayUI : MonoBehaviour
 			return;
 		}
 		if (objMain.activeSelf) return;
+		isPress = value;
+	}
+
+	public void UpdateMove() 
+	{
+		if (btnRetry.obj.activeSelf == true) return;
+		if (PlayManager.ins.is_play == false) return;
+
+		if (isPress == false)
+		{   //컨트롤러 화면에 안보이도록
+			if (goControl.activeSelf) goControl.SetActive(false);
+			if (PlayManager.ins.player.goIdle.activeSelf == false)
+			{
+				PlayManager.ins.player.goIdle.SetActive(true);
+				PlayManager.ins.player.tfIdle.localScale = PlayManager.ins.player.tfRun.localScale;
+			}
+			if (PlayManager.ins.player.goRun.activeSelf == true) PlayManager.ins.player.goRun.SetActive(false);
+			return;
+		}
+#if UNITY_EDITOR
+#else
+		if (Input.touches != null && Input.touches.Length == 1)
+#endif
+		{
+			vec3 = Input.mousePosition;
+
+			vec3.x -= PlayManager.ins.cam2d.pixelWidth * 0.5f;
+			vec3.y -= PlayManager.ins.cam2d.pixelHeight * 0.5f;
+
+			vec3.x /= PlayManager.ins.canvas.scaleFactor;
+			vec3.y /= PlayManager.ins.canvas.scaleFactor;
+
+		}
+#if UNITY_EDITOR
+#else
+		else
+		{
+			if (goControl.activeSelf) goControl.SetActive(false);
+			if (PlayManager.ins.player.goIdle.activeSelf == false)
+			{
+				PlayManager.ins.player.goIdle.SetActive(true);
+				PlayManager.ins.player.tfIdle.localScale = PlayManager.ins.player.tfRun.localScale;
+			}
+			if (PlayManager.ins.player.goRun.activeSelf == true) PlayManager.ins.player.goRun.SetActive(false);
+			return;
+		}
+#endif
+		//컨트롤러 화면에 보이도록
+		if (goControl.activeSelf == false) 
+		{ //처음 화면에 보이면서 위치 설정
+			goControl.SetActive(true);
+			rtControl.localPosition = vec3;
+			rtDrag.localPosition = Vector3.zero;
+		}
+		rtDrag.localPosition = vec3 - rtControl.localPosition;
+		drag_distance = Vector3.Distance(rtControl.position, rtDrag.position);
+		if (drag_distance > MAX_DRAG)
+		{
+			vec3 = rtDrag.localPosition;
+			vec3.x = vec3.x *  (MAX_DRAG / drag_distance);
+			vec3.y = vec3.y *  (MAX_DRAG / drag_distance);
+			rtDrag.localPosition = vec3;
+		}
+		if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
+		if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
+
+		if (rtDrag.localPosition.x < 0)
+		{
+			if (PlayManager.ins.player.tfRun.localScale.x > 0)
+			{
+				vec3 = Vector3.one;
+				vec3.x = -1;
+				PlayManager.ins.player.tfRun.localScale = vec3;
+			}
+		}
+		else
+		{
+			if (PlayManager.ins.player.tfRun.localScale.x < 0)
+				PlayManager.ins.player.tfRun.localScale = Vector3.one;
+		}
+
+		vec3 = rtBgTile.localPosition;
+		vec3.x -= rtDrag.localPosition.x * 0.05f;
+		vec3.y -= rtDrag.localPosition.y * 0.05f;
+
+		if (vec3.x > 0) vec3.x -= 100f;
+		if (vec3.x < -100) vec3.x += 100f;
+		if (vec3.y > 0) vec3.y -= 100f;
+		if (vec3.y < -100) vec3.y += 100f;
+
+		rtBgTile.localPosition = vec3;
 	}
 
 	public void AddCoin()

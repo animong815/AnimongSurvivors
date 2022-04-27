@@ -7,6 +7,11 @@ public class Player : MonoBehaviour
 	public GameObject obj;
 	public Transform tran;
 
+	public GameObject goIdle;
+	public Transform tfIdle;
+	public GameObject goRun;
+	public Transform tfRun;
+
 	private Vector3 vec;
 	private Vector3 force;
 	private Vector3 vecMove;
@@ -16,6 +21,8 @@ public class Player : MonoBehaviour
 
 	private Vector3 prevPos;
 	
+
+
 	public void Init(bool isRestart = false)
 	{
 		prevPos = vec;

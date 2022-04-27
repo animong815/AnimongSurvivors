@@ -235,6 +235,7 @@ public class PlayManager : MonoBehaviour
 			ui.UpdateRetryTime();
 			return;
 		}
+		ui.UpdateMove();
 		player.UpdatePlayer();
 	}
 
