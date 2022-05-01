@@ -59,6 +59,8 @@ public class PlayUI : MonoBehaviour
 	private float drag_distance;
 	private const float MAX_DRAG = 1f;
 
+	private Vector3 vecMove = Vector3.zero;
+
 	private int coin
 	{
 		get { return cloudCoin.Value; }
@@ -117,7 +119,7 @@ public class PlayUI : MonoBehaviour
 	private void PressHit(bool value)
 	{
 		if (btnRetry.obj.activeSelf == true) return;
-		if (PlayManager.ins.is_play == false) return;
+		if (PlayManager.ins.is_init == false) return;
 
 		if (value == true && objMain.activeSelf)
 		{
@@ -126,6 +128,16 @@ public class PlayUI : MonoBehaviour
 			btnRetry.obj.SetActive(false);
 			btnRetryNow.obj.SetActive(false);
 			objIngameScoreBox.SetActive(true);
+			PlayManager.ins.is_play = false;
+			PlayManager.ins.player.goIdle.SetActive(false);
+			PlayManager.ins.player.goRun.SetActive(true);
+			LeanTween.moveLocalY(PlayManager.ins.player.go, 0f, 1f).setOnComplete(()=> 
+			{
+				PlayManager.ins.is_play = true;
+				PlayManager.ins.player.goIdle.SetActive(true);
+				PlayManager.ins.player.goRun.SetActive(false);
+			});//.setEaseOutQuad();
+			LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
 			UpdateDistance(0);
 			return;
 		}
@@ -137,7 +149,7 @@ public class PlayUI : MonoBehaviour
 	{
 		if (btnRetry.obj.activeSelf == true) return;
 		if (PlayManager.ins.is_play == false) return;
-
+		
 		if (isPress == false)
 		{   //컨트롤러 화면에 안보이도록
 			if (goControl.activeSelf) goControl.SetActive(false);
@@ -149,6 +161,7 @@ public class PlayUI : MonoBehaviour
 			if (PlayManager.ins.player.goRun.activeSelf == true) PlayManager.ins.player.goRun.SetActive(false);
 			return;
 		}
+	
 #if UNITY_EDITOR
 #else
 		if (Input.touches != null && Input.touches.Length == 1)
@@ -211,10 +224,16 @@ public class PlayUI : MonoBehaviour
 				PlayManager.ins.player.tfRun.localScale = Vector3.one;
 		}
 
-		vec3 = rtBgTile.localPosition;
-		vec3.x -= rtDrag.localPosition.x * 0.05f;
-		vec3.y -= rtDrag.localPosition.y * 0.05f;
+		vecMove.x = rtDrag.localPosition.x * 0.05f;
+		vecMove.y = rtDrag.localPosition.y * 0.05f;
 
+		PlayManager.ins.stage.UpdateMove(vecMove);
+
+		vec3 = rtBgTile.localPosition;
+		vec3.x -= vecMove.x;
+		vec3.y -= vecMove.y;
+
+		//배경 타일 반복 움직임
 		if (vec3.x > 0) vec3.x -= 100f;
 		if (vec3.x < -100) vec3.x += 100f;
 		if (vec3.y > 0) vec3.y -= 100f;

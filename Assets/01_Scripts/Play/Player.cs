@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : ObjectBase
 {
-	public GameObject obj;
-	public Transform tran;
-
 	public GameObject goIdle;
 	public Transform tfIdle;
 	public GameObject goRun;
@@ -21,11 +18,12 @@ public class Player : MonoBehaviour
 
 	private Vector3 prevPos;
 	
-
-
+	
 	public void Init(bool isRestart = false)
 	{
+		base.Init();
 		prevPos = vec;
+		type = TYPE.Player;
 	}
 
 	public void UpdatePlayer()
@@ -53,4 +51,9 @@ public class Player : MonoBehaviour
 		PlayManager.ins.ui.UpdateDistance();
 	}
 
+    public override void UpdateObject()
+    {
+        base.UpdateObject();
+
+    }
 }

@@ -17,10 +17,12 @@ public class PlayManager : MonoBehaviour
 	public Player player;
 	public PopupLoaing loading;
 
+	public Stage stage;
+
 	public LevelData data;
 
 	public const float MAX_W = 70f;
-	private bool is_init;
+	public bool is_init = false;
 	private bool is_showGuide;
 
 	public const string STR_LEADER = "CgkI4ZSUsegQEAIQBA";
@@ -80,7 +82,7 @@ public class PlayManager : MonoBehaviour
 		ui.btnLogin.obj.SetActive(false);
 		ui.btnLogin.btn.onClick.AddListener(SetLogin);
 		
-		player.obj.SetActive(false);
+		player.go.SetActive(false);
 		
 		ui.txtCoin.text = string.Empty;
 		ui.txtDistance.text = string.Empty;
@@ -139,9 +141,7 @@ public class PlayManager : MonoBehaviour
 		ui.btnRanking.obj.SetActive(true);
 		ui.btnChar.obj.SetActive(true);
 
-		player.obj.SetActive(true);
-
-		is_play = true;
+		player.go.SetActive(true);
 	}
 
 	private void OnLogin(bool value) 
@@ -219,9 +219,10 @@ public class PlayManager : MonoBehaviour
 				mgrAD.Init();
 			}
 			is_showGuide = true;
-			is_init = true;
 		}
+		is_init = true;
 		show_ad = 0;
+		stage.Init();
 		player.Init();
 		ui.InitData();		
 	}
@@ -237,6 +238,7 @@ public class PlayManager : MonoBehaviour
 		}
 		ui.UpdateMove();
 		player.UpdatePlayer();
+		stage.UpdateStage();
 	}
 
 	public void GameOver()
@@ -260,7 +262,6 @@ public class PlayManager : MonoBehaviour
 	{
 		CloudOnce.Cloud.OnCloudSaveComplete -= ShowRetryUI;
 
-		is_play = true;
 		ui.objIngame.SetActive(true);
 		ui.objIngameScoreBox.SetActive(true);
 		ui.objMain.SetActive(true);

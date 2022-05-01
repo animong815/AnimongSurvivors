@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class ObjectBase : MonoBehaviour
 {
-	public GameObject obj;
-	public Transform tran;
+	public enum TYPE 
+	{
+		Player,
+		Enemy
+	}
 
-	public void Init()
+	public GameObject go;
+	public Transform tran;
+	public RectTransform rt;
+
+	public TYPE type = TYPE.Player;
+
+	public virtual void Init()
 	{
 
+	}
+	public virtual void UpdateObject() 
+	{
+		
 	}
 }

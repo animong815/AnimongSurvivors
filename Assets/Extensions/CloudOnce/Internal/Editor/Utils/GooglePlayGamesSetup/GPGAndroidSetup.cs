@@ -21,8 +21,8 @@
 namespace CloudOnce.Internal.Editor.Utils
 {
 #if UNITY_ANDROID
-    //using GooglePlayGames;
-    //using GooglePlayServices;
+    using GooglePlayGames;
+    using GooglePlayServices;
 #endif
     using UnityEditor;
 
@@ -63,7 +63,7 @@ namespace CloudOnce.Internal.Editor.Utils
             var manifestBody = GPGSUtil.ReadFile(manifestTemplate);
             manifestBody = manifestBody.Replace(appIdPlaceholder, appID);
 #if UNITY_ANDROID
-            //manifestBody = manifestBody.Replace(pluginVersionPlaceholder, PluginVersion.VersionString);
+            manifestBody = manifestBody.Replace(pluginVersionPlaceholder, PluginVersion.VersionString);
 #endif
             manifestBody = manifestBody.Replace(serviceIdPlaceholder, string.Empty);
             GPGSUtil.WriteFile(destination, manifestBody);
@@ -73,7 +73,7 @@ namespace CloudOnce.Internal.Editor.Utils
             Google.VersionHandler.Enabled = true;
             AssetDatabase.Refresh();
 #if UNITY_ANDROID
-            //PlayServicesResolver.MenuResolve();
+            PlayServicesResolver.MenuResolve();
 #endif
 
             // refresh assets, and we're done

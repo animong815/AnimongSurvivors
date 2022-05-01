@@ -27,25 +27,6 @@ namespace CloudOnce
         /// </summary>
         public static class LeaderboardIDs
         {
-            public static string HigeScore
-            {
-                get
-                {
-#if UNITY_ANDROID && !UNITY_EDITOR
-#if CLOUDONCE_GOOGLE
-                    return "CgkI4ZSUsegQEAIQBA";
-#else
-                    return string.Empty;
-#endif
-#elif (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
-                    return "";
-#elif UNITY_EDITOR
-                    return "HigeScore";
-#else
-                    return string.Empty;
-#endif
-                }
-            }
         }
     }
 }

@@ -43,7 +43,7 @@ public class ObjectCloudPool : ObjectBasePool
     {
         is_init = true;
         curIdx = 0;
-        prefab.obj.SetActive(false);
+        prefab.go.SetActive(false);
         ReturnViewAll();
     }
 
@@ -63,7 +63,7 @@ public class ObjectCloudPool : ObjectBasePool
         {
             if (tran.localPosition.y + view[n].tran.localPosition.y < screenH * -0.5f)
             {
-                view[n].obj.SetActive(false);
+                view[n].go.SetActive(false);
                 list.Add(view[n]);
                 view.RemoveAt(n);
                 n--;
@@ -94,7 +94,7 @@ public class ObjectCloudPool : ObjectBasePool
     {
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i].obj.activeSelf == false)
+            if (list[i].go.activeSelf == false)
             {
                 cloud = list[i];
                 list.RemoveAt(i);
@@ -116,7 +116,7 @@ public class ObjectCloudPool : ObjectBasePool
     public void ReturnCloud(ObjectCloud item)
     {
         list.Add(item);
-        list[list.Count - 1].obj.SetActive(false);
+        list[list.Count - 1].go.SetActive(false);
         list[list.Count - 1].Init();
         item.tran.SetParent(tran);
 

@@ -1,12 +1,6 @@
 {
 	"AchievementIDs":[],
-	"LeaderboardIDs":[
-		{
-			"InternalID":"HigeScore",
-			"AppleID":"",
-			"GoogleID":"CgkI4ZSUsegQEAIQBA"
-		}
-	],
+	"LeaderboardIDs":[],
 	"CloudVariables":[
 		{
 			"Key":"Coin",
@@ -25,7 +19,7 @@
 	],
 	"AppleSupported":false,
 	"GoogleSupported":true,
-	"GoogleAppID":"577776192097",
+	"GoogleAppID":"800005555540",
 	"GoogleSetupRun":true,
 	"DebugModeEnabled":false,
 	"Version":"2.7.3",
