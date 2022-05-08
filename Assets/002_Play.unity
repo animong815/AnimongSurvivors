@@ -1547,11 +1547,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mozzi
       objectReference: {fileID: 0}
-    - target: {fileID: 1378045225870050349, guid: ec998261a08a1094caacc9c180b57bac,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: ec998261a08a1094caacc9c180b57bac,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1635,7 +1630,7 @@ PrefabInstance:
     - target: {fileID: 4095552996128257760, guid: ec998261a08a1094caacc9c180b57bac,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 371
+      value: 1021
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: ec998261a08a1094caacc9c180b57bac,
         type: 3}
@@ -18605,7 +18600,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1560, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -18632,7 +18627,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1061655038
 RectTransform:
@@ -35067,7 +35062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2010255357
 RectTransform:
   m_ObjectHideFlags: 0

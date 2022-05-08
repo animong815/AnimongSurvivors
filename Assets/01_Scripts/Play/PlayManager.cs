@@ -8,7 +8,7 @@ public class PlayManager : MonoBehaviour
 
 	public Camera cam2d;
 	public Canvas canvas;
-
+	public float canvasSize;
 	public Camera cam2dB;
 	public Canvas canvasB;
 
@@ -62,6 +62,7 @@ public class PlayManager : MonoBehaviour
 
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 60;
+
 		//UnityEngine.Caching.ClearCache();
 	}
 
@@ -92,12 +93,16 @@ public class PlayManager : MonoBehaviour
 		ui.objTopDistance.SetActive(false);
 		ui.objCoin.SetActive(false);
 
+		canvasSize = canvas.transform.localScale.x;
+
 		//CloudOnce.Cloud.OnCloudLoadComplete += LoadCloud;
 		CloudOnce.Cloud.OnInitializeComplete += CloudInitComplete;
 		//CloudOnce.Cloud.OnSignedInChanged += InitPlay;
 		//CloudOnce.Cloud.OnSignInFailed += CloudInitComplete;
 
 		CloudOnce.Cloud.Initialize(false, false, false);
+
+
 	}
 	
 	private void CloudInitComplete()

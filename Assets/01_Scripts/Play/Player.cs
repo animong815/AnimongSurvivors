@@ -18,7 +18,8 @@ public class Player : ObjectBase
 
 	private Vector3 prevPos;
 	
-	
+	public float speed = 70f;
+
 	public void Init(bool isRestart = false)
 	{
 		base.Init();

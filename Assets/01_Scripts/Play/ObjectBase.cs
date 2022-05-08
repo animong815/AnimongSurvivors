@@ -16,6 +16,8 @@ public class ObjectBase : MonoBehaviour
 
 	public TYPE type = TYPE.Player;
 
+    public CircleCollider2D col;
+
 	public virtual void Init()
 	{
 

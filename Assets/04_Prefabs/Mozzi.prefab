@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4095552996128257760}
   - component: {fileID: 5229293077393748020}
-  m_Layer: 5
+  - component: {fileID: 812212977810414841}
+  - component: {fileID: 1498356157581000373}
+  m_Layer: 7
   m_Name: Mozzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +61,38 @@ MonoBehaviour:
   goIdle: {fileID: 4095552996250679767}
   rtRun: {fileID: 3199574871429456556}
   goRun: {fileID: 3199574871429456557}
+  col: {fileID: 812212977810414841}
+--- !u!58 &812212977810414841
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378045225870050349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -30}
+  serializedVersion: 2
+  m_Radius: 30
+--- !u!114 &1498356157581000373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378045225870050349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa38b761ea5c4a61b76ad3676f0ea56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentType: 1
+  player: {fileID: 0}
+  enemy: {fileID: 5229293077393748020}
 --- !u!1 &4095552996250679767
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +104,7 @@ GameObject:
   - component: {fileID: 4095552996250679764}
   - component: {fileID: 4095552996250679762}
   - component: {fileID: 4095552996250679765}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mozzi01_Run_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580186919038829375, guid: 678756f232f063847b3b4f838011ca55,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 678756f232f063847b3b4f838011ca55, type: 3}
