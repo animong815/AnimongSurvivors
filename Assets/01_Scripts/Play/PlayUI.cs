@@ -224,8 +224,8 @@ public class PlayUI : MonoBehaviour
 				PlayManager.ins.player.tfRun.localScale = Vector3.one;
 		}
 
-		vecMove.x = rtDrag.localPosition.x * 0.08f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
-		vecMove.y = rtDrag.localPosition.y * 0.08f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+		vecMove.x = rtDrag.localPosition.x * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+		vecMove.y = rtDrag.localPosition.y * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
 
 		PlayManager.ins.stage.UpdateMove(vecMove);
 

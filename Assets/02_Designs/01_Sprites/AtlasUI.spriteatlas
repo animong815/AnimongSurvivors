@@ -57,6 +57,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: b09481418dce1ed48833fb50c7bb3b38, type: 3}
     - {fileID: 102900000, guid: cdb6c9cfc263da44c87cb332910a2d44, type: 3}
+    - {fileID: 102900000, guid: 3edf0016466516b4296e6700fa4da138, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -67,25 +68,34 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cf2ceda007c151244aa28c415f2ebac3, type: 3}
   - {fileID: 21300000, guid: c72524e0562b5774a891c071a6d65353, type: 3}
   - {fileID: 21300000, guid: 0c7bab0109f3ebf4c9a9c338546b7f3e, type: 3}
+  - {fileID: 21300000, guid: f090d341b2dc0814bbed6988b940008a, type: 3}
   - {fileID: 21300000, guid: 82e86ba1a9ee3fd4f831d685823b00d3, type: 3}
   - {fileID: 21300000, guid: 7d38eb226cc962949b5a35b9c7a44fa4, type: 3}
   - {fileID: 21300000, guid: f1301e4266350574c95c3d6bcecbd733, type: 3}
   - {fileID: 21300000, guid: 461296c2302088c43bd2b12113024c79, type: 3}
+  - {fileID: 21300000, guid: 5f6c6513688179347a084e65886090ce, type: 3}
   - {fileID: 21300000, guid: 915d081305d1e8d478c46c9ec3aabe25, type: 3}
+  - {fileID: 21300000, guid: cddd9223214357d4e90ddc451b03266f, type: 3}
   - {fileID: 21300000, guid: 3301ff346c468cc4484d04ffc2384b7e, type: 3}
   - {fileID: 21300000, guid: ed81356499820fc4ba0fe4cd63b7add9, type: 3}
+  - {fileID: 21300000, guid: 4553998401db0f4468d9bbefb940b2e6, type: 3}
   - {fileID: 21300000, guid: c640b7a47ae079448aca29f4eb3539b2, type: 3}
   - {fileID: 21300000, guid: 65189df43a163db4395e90d065a689cb, type: 3}
   - {fileID: 21300000, guid: e6f5d3056faa73148a19b455b17e5522, type: 3}
   - {fileID: 21300000, guid: 49c57b0545667914d8e82ce243121011, type: 3}
+  - {fileID: 21300000, guid: b57dcf2507ce59340a3f67c537326bb3, type: 3}
   - {fileID: 21300000, guid: 0bcc39653872ed7468c758fc2c1a2c9a, type: 3}
   - {fileID: 21300000, guid: 40a379063c046d04eba957c77d031081, type: 3}
   - {fileID: 21300000, guid: d2761126a78ff8f47a74058200ac1a0f, type: 3}
   - {fileID: 21300000, guid: 5eeae53665f8339469d76b579380052a, type: 3}
   - {fileID: 21300000, guid: 0dfb87568fd572d42b699cbe930ec4de, type: 3}
   - {fileID: 21300000, guid: 021643d6b569e46499745b7928071281, type: 3}
+  - {fileID: 21300000, guid: f412a77729f02e142870dd3a50ee4f9b, type: 3}
   - {fileID: 21300000, guid: e4bf6a773c5970244b0f1f353b916ee3, type: 3}
+  - {fileID: 21300000, guid: cc6f13870b386e14aa954f8fefc70f13, type: 3}
+  - {fileID: 21300000, guid: 0af65bb72244a54448ab7855bbe9c975, type: 3}
   - {fileID: 21300000, guid: 23671ec79a58b2a47930885026886c54, type: 3}
+  - {fileID: 21300000, guid: 8b8a5fd7fd4eb964aab2e77431646460, type: 3}
   - {fileID: 21300000, guid: 352d3918a428883418d7c3c87131313b, type: 3}
   - {fileID: 21300000, guid: 0d8bc828ec36eb648b4dc04fdebfe6ca, type: 3}
   - {fileID: 21300000, guid: 641acb28996b31140a16629696c0b511, type: 3}
@@ -93,7 +103,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 39a99f880dabddb4b8f6ffb018c34c70, type: 3}
   - {fileID: 21300000, guid: 0e68d2d873469f148b9b0ad71f7169a6, type: 3}
   - {fileID: 21300000, guid: 9013f3d8ac43c364e8f3ee2d3c2829f1, type: 3}
+  - {fileID: 21300000, guid: 20a44809de104de4aa32d914fbcddd2b, type: 3}
   - {fileID: 21300000, guid: cc3b5c79868f200429b0900b3f903247, type: 3}
+  - {fileID: 21300000, guid: 02a7ee89f9098d2408f1e920c63dc124, type: 3}
   - {fileID: 21300000, guid: eb5c5f999b22d5b4bb0c89b98509808e, type: 3}
   - {fileID: 21300000, guid: 083856b9feb55c6438d5c9cce23aa333, type: 3}
   - {fileID: 21300000, guid: e4c5e73a7ad51374f8d9dc6c8776273d, type: 3}
@@ -103,19 +115,28 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 637fbc9b4cdadc84f864078cba376ec1, type: 3}
   - {fileID: 21300000, guid: 99851aaba81450645bf7f128c6cbca08, type: 3}
   - {fileID: 21300000, guid: 0bd8024ccef0b034eb734de3776dcf6d, type: 3}
+  - {fileID: 21300000, guid: 0503485d54c81a942b2f1dd7fddd44a9, type: 3}
   - {fileID: 21300000, guid: 411395addc278fa40b9cd2b7174b6389, type: 3}
   - {fileID: 21300000, guid: f14cc6bdfcf47464e8c57336f6b7c1a8, type: 3}
+  - {fileID: 21300000, guid: 782a54dd194c99a43aeab3c4b61922dc, type: 3}
   - {fileID: 21300000, guid: 094722edbe0315c49a5fa96fbed82940, type: 3}
+  - {fileID: 21300000, guid: ee30611ec4de25d45bb881dd3627a983, type: 3}
   - {fileID: 21300000, guid: 7a27012edead92a4c9296148c216f965, type: 3}
+  - {fileID: 21300000, guid: 2496e42ee31040a43b0c5633079873e7, type: 3}
   - {fileID: 21300000, guid: 15cdb44eb8d761a46b01f6a00543b23c, type: 3}
   - {fileID: 21300000, guid: ec0bd96e5e901ad499f1b415f6611e76, type: 3}
+  - {fileID: 21300000, guid: c98b0c6e85339d342aa39806c812db05, type: 3}
+  - {fileID: 21300000, guid: edaec08e215aaa8419a39a6ddc5a894d, type: 3}
   - {fileID: 21300000, guid: 398f0f9e549c6184695692a49db9834e, type: 3}
+  - {fileID: 21300000, guid: 7357ff9e74ba46943a6d03414a3eb493, type: 3}
   - {fileID: 21300000, guid: 5141fcbe29d6c554e9e70624cb79dade, type: 3}
   - {fileID: 21300000, guid: 3c6e81ee893816d409e5ee13498febfd, type: 3}
   - {fileID: 21300000, guid: f0d91c0f44b51de46822b92e0c8e897c, type: 3}
+  - {fileID: 21300000, guid: 1283982fc3f72224f8c3ab829fa52319, type: 3}
   - {fileID: 21300000, guid: bbdbca2fd16505942b0f4f3c9bfa0ae7, type: 3}
   - {fileID: 21300000, guid: 269df46fb3614254e9742b31174c69df, type: 3}
   - {fileID: 21300000, guid: cb0eeb8fa608d99468faf822e2bc7513, type: 3}
+  - {fileID: 21300000, guid: f5e668bfa412b5c49b078df2c525db3c, type: 3}
   - {fileID: 21300000, guid: 15e6f4df63c8207449890cc679169fed, type: 3}
   m_PackedSpriteNamesToIndex:
   - btn_back
@@ -123,25 +144,34 @@ SpriteAtlas:
   - btn_rp_setting
   - btn_blue_h80
   - Mozzi01_Run_01
+  - FlowerGarden_24x24_01
   - img_record
   - icon_coin_h200
   - bg_coin
   - bg_bestscore
+  - FlowerGarden_40x24_02
   - Mozzi01_Run_05
+  - Bush_80x40_02
   - btn_close
   - btn_ranking
+  - FlowerGarden_24x16_01
   - btn_replay
   - Mozzi01_Run_06
   - btn_play
   - bg_h48
+  - Bush_80x80_02
   - Mozzi01_Run_04
   - btn_green_h80
   - btn_coin
   - icon_coin_h96
   - btn_home
   - Gomong_Run_01
+  - FlowerGarden_80x80_01
   - btn_share
+  - Gomong_Idle_01
+  - Gomong_Idle_02
   - img_balloon
+  - Grass_80x32_01
   - btn_ca
   - icon_rank
   - Gomong_Run_03
@@ -149,7 +179,9 @@ SpriteAtlas:
   - img_click_02
   - img_newrecord
   - bg_shop_ca
+  - Bush_160x120_01
   - btn_dis_h80
+  - Grass_80x48_01
   - btn_open
   - img_cloud_03
   - btn_start_bg_02
@@ -159,19 +191,28 @@ SpriteAtlas:
   - img_cloud_04
   - btn_setting
   - img_cloud_02
+  - BGbasic_160x160_01
   - icon_AD
   - img_title
+  - Grass_64x24_01
   - Gomong_Run_04
+  - FlowerGarden_32x16_01
   - img_click_01
+  - FlowerGarden_120x80_01
   - btn_orange_h80
   - ca_bear
+  - Gomong_Idle_03
+  - Grass_40x16_01
   - btn_rp_ranking
+  - FlowerGarden_40x24_01
   - Mozzi01_Run_03
   - img_cloud_01
   - btn_shop
+  - Grass_56x16_01
   - btn_ad
   - Mozzi01_Run_02
   - icon_coin_01
+  - Bush_80x80_01
   - btn_revive
   m_RenderDataMap: {}
   m_Tag: AtlasUI

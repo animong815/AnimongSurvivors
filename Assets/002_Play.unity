@@ -36323,6 +36323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam2d: {fileID: 1861002318}
   canvas: {fileID: 1061655037}
+  canvasSize: 0
   cam2dB: {fileID: 718339006}
   canvasB: {fileID: 1272798073}
   mgrAD: {fileID: 447924442}
