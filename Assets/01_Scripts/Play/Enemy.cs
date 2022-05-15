@@ -16,8 +16,13 @@ public class Enemy : ObjectBase
     private bool is_right_back = true;
     private float fnum;
     private float speed = 50f;
-    private Collider2D hit;
+    private Collider2D[] hit;
+    private int hnum;
     private HitObject hitObj;
+    private bool is_collide;
+
+    private const string CHECK_NAME_PLAYER = "Player";
+    private const string CHECK_NAME_BG = "Bg";
 
     public override void Init() 
     {
@@ -108,35 +113,40 @@ public class Enemy : ObjectBase
     {
         col.enabled = false;
         vec = rt.position;
-        vec.y += col.offset.y * PlayManager.ins.canvasSize;
-        hit = Physics2D.OverlapCircle(vec, col.radius * PlayManager.ins.canvasSize);
+        vec.y += col.offset.y * PlayManager.ins.canvasSize;        
+        hit = Physics2D.OverlapCircleAll(vec, col.radius * PlayManager.ins.canvasSize);
         col.enabled = true;
         //Debug.Log("hit : " + hit);
+        is_collide = false;
         if(hit != null)
         {
-            hitObj = hit.GetComponent<HitObject>();
-            if(hitObj != null)
+            for(hnum = 0; hnum < hit.Length; hnum++)
             {
-                switch(hitObj.CurrentType)
-                { 
-                    case BgObject.TYPE.Player:
-                    //Debug.Log("Hit Player");
-                    PlayManager.ins.GameOver();
-                    break;
-                    case BgObject.TYPE.Enemy:
-                    
-                    //hitObj.enemy.rt.
-                    //vec = vecBack;
-                    //vec.x += speed * Time.smoothDeltaTime * (vec.x < hitObj.enemy.rt.localPosition.x ? 1f : -1f) ;
-                    //rt.localPosition = vec;
-                    break;
-                    default: return false;
+                if(hit[hnum] == null) continue;
+                hitObj = hit[hnum].GetComponent<HitObject>();
+
+                if(hitObj != null)
+                {
+                    switch(hitObj.CurrentType)
+                    { 
+                        case ObjectBase.TYPE.Player:
+                        //Debug.Log("Hit Player");
+                        PlayManager.ins.GameOver();
+                        is_collide = true;
+                        break;
+                        case ObjectBase.TYPE.Enemy:
+                        is_collide = true;   
+                        break;           
+                        //case ObjectBase.TYPE.BgOver:
+                        //is_collide = true;
+                        //break;          
+                        default: break;
+                    }
                 }
             }
             //Debug.Log("hit.name :: " +  hit.transform.gameObject.name);
-            return true;
         }
-        return false;
+        return is_collide;
 
         //Collider.HitCheck();
         //Physics.Collections.
