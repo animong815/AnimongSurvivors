@@ -37,7 +37,7 @@ public class PlayUI : MonoBehaviour
 
 	private float timeRetryWaitStart = 0f;
 	private float timeRetryWaitEnd = 0f;
-
+	public const int TILE_SIZE = 160;
 	//
 	private int num;
 	[SerializeField]
@@ -50,7 +50,7 @@ public class PlayUI : MonoBehaviour
 	public GameObject goControl;
 	public RectTransform rtControl;
 	public RectTransform rtDrag;
-
+	public GameObject goBgTile;
 	public RectTransform rtBgTile;
 
 	private bool isPress = false;
@@ -60,7 +60,7 @@ public class PlayUI : MonoBehaviour
 	private const float MAX_DRAG = 1f;
 
 	private Vector3 vecMove = Vector3.zero;
-
+	
 	private int coin
 	{
 		get { return cloudCoin.Value; }
@@ -131,13 +131,16 @@ public class PlayUI : MonoBehaviour
 			PlayManager.ins.is_play = false;
 			PlayManager.ins.player.goIdle.SetActive(false);
 			PlayManager.ins.player.goRun.SetActive(true);
-			LeanTween.moveLocalY(PlayManager.ins.player.go, 0f, 1f).setOnComplete(()=> 
+
+			LeanTween.moveLocalY(PlayManager.ins.player.go, 0f, 1f);
+			LeanTween.moveLocalY(goBgTile, 0f, 1f);
+			LeanTween.moveLocalY(PlayManager.ins.stage.go, 0f, 1f).setOnComplete(()=> 
 			{
 				PlayManager.ins.is_play = true;
 				PlayManager.ins.player.goIdle.SetActive(true);
 				PlayManager.ins.player.goRun.SetActive(false);
 			});//.setEaseOutQuad();
-			LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
+			//LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
 			UpdateDistance(0);
 			return;
 		}
@@ -232,14 +235,19 @@ public class PlayUI : MonoBehaviour
 		vec3 = rtBgTile.localPosition;
 		vec3.x -= vecMove.x;
 		vec3.y -= vecMove.y;
-
+		
+		 vecMove = vec3;
 		//배경 타일 반복 움직임
-		if (vec3.x > 0) vec3.x -= 100f;
-		if (vec3.x < -100) vec3.x += 100f;
-		if (vec3.y > 0) vec3.y -= 100f;
-		if (vec3.y < -100) vec3.y += 100f;
+		if (vec3.x > 0) vec3.x -= TILE_SIZE;
+		if (vec3.x < -TILE_SIZE) vec3.x += TILE_SIZE;
+		if (vec3.y > 0) vec3.y -= TILE_SIZE;
+		if (vec3.y < -TILE_SIZE) vec3.y += TILE_SIZE;
 
 		rtBgTile.localPosition = vec3;
+		if(vecMove.x != vec3.x || vecMove.y != vec3.y)
+		{	//화면 끝에 도달해서 이동한 상황
+			PlayManager.ins.stage.bgObject.CheckBgObject();
+		}
 	}
 
 	public void AddCoin()
@@ -278,6 +286,7 @@ public class PlayUI : MonoBehaviour
 		timeRetryWaitStart = Time.time;
 		timeRetryWaitEnd = PlayManager.ins.data.ad_wait_time;
 
+		goControl.SetActive(false);
 		btnRetry.obj.SetActive(true);
 	}
 
@@ -313,6 +322,9 @@ public class PlayUI : MonoBehaviour
 		btnChar.obj.SetActive(true);
 		btnRanking.obj.SetActive(true);
 		objTitle.SetActive(true);
+
+		//stage 초기화
+		PlayManager.ins.stage.ResetStage();
 	}
 
 	private void ClickRetryNow()

@@ -75,7 +75,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -30}
+  m_Offset: {x: 0, y: -20}
   serializedVersion: 2
   m_Radius: 20
 --- !u!114 &1498356157581000373
@@ -93,6 +93,7 @@ MonoBehaviour:
   CurrentType: 1
   player: {fileID: 0}
   enemy: {fileID: 5229293077393748020}
+  bgObject: {fileID: 0}
 --- !u!1 &4095552996250679767
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4095552996250679762
@@ -263,7 +264,7 @@ PrefabInstance:
     - target: {fileID: 2580186919038829374, guid: 678756f232f063847b3b4f838011ca55,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2580186919038829374, guid: 678756f232f063847b3b4f838011ca55,
         type: 3}

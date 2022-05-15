@@ -93,6 +93,7 @@ MonoBehaviour:
   CurrentType: 0
   player: {fileID: 1621044646110497446}
   enemy: {fileID: 0}
+  bgObject: {fileID: 0}
 --- !u!1001 &4095552995800230083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 1606814592864106315, guid: a5e7054669b781941b94e4dd2407ee63,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1606814592864106315, guid: a5e7054669b781941b94e4dd2407ee63,
         type: 3}
@@ -329,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 3030171424149518838, guid: c90461a17c822c148b1898d2845d477a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3030171424149518838, guid: c90461a17c822c148b1898d2845d477a,
         type: 3}

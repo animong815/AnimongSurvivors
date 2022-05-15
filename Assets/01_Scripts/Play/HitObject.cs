@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class HitObject : MonoBehaviour
 {
-    public enum TYPE
-    {
-        Player,
-        Enemy
-    }
-
-    public TYPE CurrentType;
+    
+    public ObjectBase.TYPE CurrentType;
     public Player player;
     public Enemy enemy;
-    
+    public BgObject bgObject;
 }

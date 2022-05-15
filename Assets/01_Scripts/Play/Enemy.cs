@@ -119,16 +119,18 @@ public class Enemy : ObjectBase
             {
                 switch(hitObj.CurrentType)
                 { 
-                    case HitObject.TYPE.Player:
-                    Debug.Log("Hit Player");
+                    case BgObject.TYPE.Player:
+                    //Debug.Log("Hit Player");
+                    PlayManager.ins.GameOver();
                     break;
-                    case HitObject.TYPE.Enemy:
+                    case BgObject.TYPE.Enemy:
                     
                     //hitObj.enemy.rt.
                     //vec = vecBack;
                     //vec.x += speed * Time.smoothDeltaTime * (vec.x < hitObj.enemy.rt.localPosition.x ? 1f : -1f) ;
                     //rt.localPosition = vec;
                     break;
+                    default: return false;
                 }
             }
             //Debug.Log("hit.name :: " +  hit.transform.gameObject.name);

@@ -212,6 +212,9 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/Platforms/Android/AndroidClient.cs" />
      <Compile Include="Assets/01_Scripts/SceneManager.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLeaderboard.cs" />
+     <Compile Include="Assets/01_Scripts/Play/BgObject.cs" />
+     <Compile Include="Assets/01_Scripts/Play/BgObjectList.cs" />
+     <Compile Include="Assets/01_Scripts/Play/EnemyList.cs" />
      <None Include="Assets/GoogleMobileAds/GoogleMobileAds_version-7.0.0_manifest.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/LeaderboardsPropertyTemplate.cs.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/CloudVariablesPropertyTemplate.cs.txt" />

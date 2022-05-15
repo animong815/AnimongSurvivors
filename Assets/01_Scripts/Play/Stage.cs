@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Stage : MonoBehaviour
 {
+    public GameObject go;
     public RectTransform rt;
+    public RectTransform rtBgObject;
     public RectTransform rtGround;
     public RectTransform rtEnemy;
     public Player player;
     public List<Enemy> enemies;
+    public BgObjectList bgObject;
 
     private Dictionary<int, List<Enemy>> listEnemy;
     private List<ObjectBase> list;
@@ -64,8 +67,44 @@ public class Stage : MonoBehaviour
             SortStage();
             
             createTime = Time.time;
+
+            bgObject.Init();
+
             is_init = true;
         }
+        vec = Vector3.zero;
+        vec.y = -160f;
+
+        PlayManager.ins.ui.rtBgTile.anchoredPosition =
+        rt.anchoredPosition = vec;
+        
+    }
+    public void ResetStage()
+    {
+        List<ObjectBase> listDelete = new List<ObjectBase>();
+        int i;
+        for(i =0; i< listView.Count; i++)
+        {
+            listDelete.Add(listView[i]);
+        }
+
+        for(i =0; i< listDelete.Count; i++)
+        {
+            if(listDelete[i].type != ObjectBase.TYPE.Enemy) continue;
+            ReturnEnemy(listDelete[i] as Enemy);
+        }
+        listDelete.Clear();
+        listDelete = null;
+
+        vec = Vector3.zero;
+        vec.y = -160f;
+        PlayManager.ins.ui.rtBgTile.anchoredPosition =
+        rt.anchoredPosition = vec;
+
+        vec.y = 50f;
+        PlayManager.ins.player.rt.anchoredPosition = vec;
+
+        bgObject.ResetBgObject();
     }
 
     public void ReturnEnemy(Enemy _enemy) 
@@ -151,7 +190,16 @@ public class Stage : MonoBehaviour
         //createTime = Time.time + 999999999999;
     }
 
-    private void SortStage()
+    public void AddList(ObjectBase _obj)
+    {
+        list.Add(_obj);
+    }
+    public void RemoveList(ObjectBase _obj)
+    {
+        list.Remove(_obj);
+    }
+
+    public void SortStage()
     {
         list.Sort((a, b) =>
         {
@@ -163,9 +211,13 @@ public class Stage : MonoBehaviour
         for (sorti = 0; sorti < list.Count; sorti++)
         {
             list[sorti].rt.SetSiblingIndex(sorti);
-            if(listView.Count <= sorti) continue;
+            //if(listView.Count <= sorti) continue;
+            //listView[sorti].UpdateObject();
+        }
+        for(sorti = 0; sorti < listView.Count; sorti++)
+        {
+            if(listView[sorti].type != ObjectBase.TYPE.Enemy) continue;
             listView[sorti].UpdateObject();
         }
-        
     }
 }

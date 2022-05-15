@@ -38,17 +38,6 @@ public class PlayManager : MonoBehaviour
 
 	private void Awake()
 	{
-		/*
-#if UNITY_EDITOR
-		if (SceneManager.ins == null)
-		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("001_Lobby");
-
-			//Debug.Log("Move Lobby Scene");
-			return;
-		}
-#endif
-		*/
 		if (PlayManager.ins != null)
 		{
 			Destroy(this);
@@ -58,7 +47,6 @@ public class PlayManager : MonoBehaviour
 		is_init = false;
 		is_play = false;
 		PlayManager.ins = this;
-		//data = LevelData.ins;
 
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 60;
@@ -95,14 +83,10 @@ public class PlayManager : MonoBehaviour
 
 		canvasSize = canvas.transform.localScale.x;
 
-		//CloudOnce.Cloud.OnCloudLoadComplete += LoadCloud;
+		stage.Init();
+
 		CloudOnce.Cloud.OnInitializeComplete += CloudInitComplete;
-		//CloudOnce.Cloud.OnSignedInChanged += InitPlay;
-		//CloudOnce.Cloud.OnSignInFailed += CloudInitComplete;
-
 		CloudOnce.Cloud.Initialize(false, false, false);
-
-
 	}
 	
 	private void CloudInitComplete()
@@ -110,19 +94,9 @@ public class PlayManager : MonoBehaviour
 		Debug.Log("CloudOnce Init");
 		CloudOnce.Cloud.OnInitializeComplete -= CloudInitComplete;
 
-		//CloudOnce.Cloud.OnCloudLoadComplete += LoadCloud;
-		//CloudOnce.Cloud.Storage.Load();
-		//InitUI();
 		SetLogin();
-
-		/*
-		if (CloudOnce.Cloud.IsSignedIn) InitUI();
-		else 
-		{	//로그인 버튼 표시
-			//CloudOnce.Cloud.OnSignedInChanged += InitPlay;
-			//CloudOnce.Cloud.SignIn();
-		}
-		*/
+		//test guest
+		//OnFailLogin();
 	}
 
 	public void SetLogin() 
@@ -227,7 +201,7 @@ public class PlayManager : MonoBehaviour
 		}
 		is_init = true;
 		show_ad = 0;
-		stage.Init();
+		
 		player.Init();
 		ui.InitData();		
 	}
@@ -275,13 +249,12 @@ public class PlayManager : MonoBehaviour
 		ui.btnChar.obj.SetActive(false);
 		ui.btnRanking.obj.SetActive(false);
 
+		player.goRun.SetActive(false);
+		player.goIdle.SetActive(true);
+
 		ui.InitRetryUI();
 	}
 
-	public void RestartY()
-	{
-		Init(false, true);
-	}
 	/*
 	public Vector3 Get3Dto2D(Vector3 vec)
 	{

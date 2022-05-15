@@ -7,7 +7,9 @@ public class ObjectBase : MonoBehaviour
 	public enum TYPE 
 	{
 		Player,
-		Enemy
+		Enemy,
+		BgOver,
+		BgBack
 	}
 
 	public GameObject go;
