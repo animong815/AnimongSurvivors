@@ -50,7 +50,7 @@ public class Enemy : ObjectBase
     private void MoveDirect()
     {
         is_right_back = is_right;
-        vecBack = 
+        //vecBack = 
         vec = rt.localPosition;
 
         fnum = PlayManager.ins.stage.player.rt.localPosition.x - rt.localPosition.x;
@@ -69,24 +69,22 @@ public class Enemy : ObjectBase
         if (PlayManager.ins.stage.player.rt.localPosition.y > rt.localPosition.y) vec.y += speed * Time.smoothDeltaTime;
         else vec.y -= speed * Time.smoothDeltaTime;
 
+        prevPos = 
+        //vecBack =
         rt.localPosition = vec;
-
-        //HitCheck();
-        fnum = rt.localPosition.y;
+        
         if(HitCheck() == false) return;
         //충돌했다면 x축으로만 이동
-        vec = vecBack;        
-        vec.x = rt.localPosition.x;
+        //vec = rt.localPosition;
+        //vec.x = vecBack.x;
+        //rt.localPosition = vec;
+        //if(HitCheck() == false) return;
+        //충돌 했다면 y축으로만 이동
+        vec = rt.localPosition;
+        vec.y = vecBack.y;
         rt.localPosition = vec;
         if(HitCheck() == false) return;
-        //충돌 했다면 y축으로만 이동
-        is_right = is_right_back;
-        vec = vecBack;
-        vec.y = fnum;
-        rt.localPosition = vec;
-        if(HitCheck() == false) return;        
-        //그래도 충돌하면 본래 위치
-        rt.localPosition = vecBack;
+        //그래도 충돌하면 밀린 위치
     }
 
     private void SetSize()
@@ -135,11 +133,31 @@ public class Enemy : ObjectBase
                         is_collide = true;
                         break;
                         case ObjectBase.TYPE.Enemy:
+                        /*
                         is_collide = true;   
+                        //몬스터와 충돌한 경우 몬서의 뒤로 이동
+                        if(hitObj.enemy.rt.localPosition.x < rt.localPosition.x)
+                        {
+                            vec = rt.localPosition;
+                            vec.x = hitObj.enemy.rt.localPosition.x;
+                            vec.x += hitObj.enemy.col.radius + col.radius;
+                            rt.localPosition = vec;
+                        }
+                        else
+                        {
+                            vec = rt.localPosition;
+                            vec.x = hitObj.enemy.rt.localPosition.x;
+                            vec.x -= hitObj.enemy.col.radius + col.radius;
+                            rt.localPosition = vec;
+                        }
                         break;           
-                        //case ObjectBase.TYPE.BgOver:
-                        //is_collide = true;
-                        //break;          
+                        */
+                        case ObjectBase.TYPE.BgOver:
+                        //몬스터 배경 오브젝트와 충돌한 경우
+                        is_collide = false;
+                        CheckBgObject(hitObj);
+                        
+                        break;          
                         default: break;
                     }
                 }

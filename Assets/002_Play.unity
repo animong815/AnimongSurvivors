@@ -1947,6 +1947,7 @@ MonoBehaviour:
   rt: {fileID: 139580443}
   type: 3
   col: {fileID: 139580446}
+  col_box: {fileID: 0}
   idx: 5
   img: {fileID: 1634447993}
 --- !u!114 &139580445
@@ -2699,6 +2700,7 @@ MonoBehaviour:
   rt: {fileID: 247091318}
   type: 3
   col: {fileID: 247091321}
+  col_box: {fileID: 0}
   idx: 15
   img: {fileID: 775806874}
 --- !u!114 &247091320
@@ -3563,6 +3565,7 @@ MonoBehaviour:
   rt: {fileID: 439841942}
   type: 2
   col: {fileID: 439841945}
+  col_box: {fileID: 0}
   idx: 3
   img: {fileID: 594489993}
 --- !u!114 &439841944
@@ -5041,6 +5044,7 @@ MonoBehaviour:
   rt: {fileID: 663795917}
   type: 3
   col: {fileID: 663795920}
+  col_box: {fileID: 0}
   idx: 9
   img: {fileID: 1321460320}
 --- !u!114 &663795919
@@ -6946,9 +6950,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 945146155}
-  - component: {fileID: 945146158}
   - component: {fileID: 945146157}
   - component: {fileID: 945146156}
+  - component: {fileID: 945146158}
   m_Layer: 7
   m_Name: BgOver_4
   m_TagString: Untagged
@@ -6992,7 +6996,8 @@ MonoBehaviour:
   tran: {fileID: 945146155}
   rt: {fileID: 945146155}
   type: 2
-  col: {fileID: 945146158}
+  col: {fileID: 0}
+  col_box: {fileID: 945146158}
   idx: 4
   img: {fileID: 1242854989}
 --- !u!114 &945146157
@@ -7011,22 +7016,32 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   bgObject: {fileID: 945146156}
---- !u!58 &945146158
-CircleCollider2D:
+--- !u!61 &945146158
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945146154}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -10}
+  m_Offset: {x: 0, y: -30}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 50
+  m_Size: {x: 130, y: 20}
+  m_EdgeRadius: 0
 --- !u!1 &948519958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7588,6 +7603,7 @@ MonoBehaviour:
   rt: {fileID: 1011694568}
   type: 3
   col: {fileID: 1011694571}
+  col_box: {fileID: 0}
   idx: 7
   img: {fileID: 973093679}
 --- !u!114 &1011694570
@@ -7965,6 +7981,7 @@ MonoBehaviour:
   rt: {fileID: 1047646535}
   type: 3
   col: {fileID: 1047646538}
+  col_box: {fileID: 0}
   idx: 12
   img: {fileID: 1033370986}
 --- !u!114 &1047646537
@@ -8352,6 +8369,7 @@ MonoBehaviour:
   rt: {fileID: 1091589334}
   type: 3
   col: {fileID: 1091589337}
+  col_box: {fileID: 0}
   idx: 11
   img: {fileID: 381411105}
 --- !u!114 &1091589336
@@ -8817,6 +8835,7 @@ MonoBehaviour:
   rt: {fileID: 1205464216}
   type: 3
   col: {fileID: 1205464219}
+  col_box: {fileID: 0}
   idx: 16
   img: {fileID: 1609214287}
 --- !u!114 &1205464218
@@ -9463,6 +9482,7 @@ MonoBehaviour:
   rt: {fileID: 1285558698}
   type: 3
   col: {fileID: 1285558701}
+  col_box: {fileID: 0}
   idx: 13
   img: {fileID: 1041709890}
 --- !u!114 &1285558700
@@ -9553,6 +9573,7 @@ MonoBehaviour:
   rt: {fileID: 1292706217}
   type: 2
   col: {fileID: 0}
+  col_box: {fileID: 1292706220}
   idx: 2
   img: {fileID: 258224725}
 --- !u!114 &1292706219
@@ -9578,7 +9599,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292706216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -9653,6 +9674,7 @@ MonoBehaviour:
   rt: {fileID: 1313058454}
   type: 3
   col: {fileID: 1313058457}
+  col_box: {fileID: 0}
   idx: 6
   img: {fileID: 228268953}
 --- !u!114 &1313058456
@@ -11172,6 +11194,7 @@ MonoBehaviour:
   rt: {fileID: 1560777383}
   type: 3
   col: {fileID: 1560777386}
+  col_box: {fileID: 0}
   idx: 10
   img: {fileID: 889199778}
 --- !u!114 &1560777385
@@ -12551,6 +12574,7 @@ MonoBehaviour:
   rt: {fileID: 1837728394}
   type: 3
   col: {fileID: 1837728397}
+  col_box: {fileID: 0}
   idx: 8
   img: {fileID: 356828416}
 --- !u!114 &1837728396
@@ -13015,6 +13039,7 @@ MonoBehaviour:
   rt: {fileID: 1882939338}
   type: 3
   col: {fileID: 1882939341}
+  col_box: {fileID: 0}
   idx: 14
   img: {fileID: 1465996487}
 --- !u!114 &1882939340
@@ -15220,6 +15245,7 @@ MonoBehaviour:
   rt: {fileID: 4769425213246102594}
   type: 2
   col: {fileID: 0}
+  col_box: {fileID: 0}
   idx: 1
   img: {fileID: 4769425213393687415}
 --- !u!114 &7939019082155938839

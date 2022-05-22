@@ -146,9 +146,7 @@ public class Stage : MonoBehaviour
     {
         //Debug.Log("_vecMove : " + _vecMove);
         _vecMove.z = 0;
-        
         rt.localPosition -= _vecMove;
-        player.tran.localPosition += _vecMove;
     }
     public void UpdateStage()
     {

@@ -131,7 +131,7 @@ public class PlayUI : MonoBehaviour
 			PlayManager.ins.is_play = false;
 			PlayManager.ins.player.goIdle.SetActive(false);
 			PlayManager.ins.player.goRun.SetActive(true);
-
+			
 			LeanTween.moveLocalY(PlayManager.ins.player.go, 0f, 1f);
 			LeanTween.moveLocalY(goBgTile, 0f, 1f);
 			LeanTween.moveLocalY(PlayManager.ins.stage.go, 0f, 1f).setOnComplete(()=> 
@@ -139,6 +139,9 @@ public class PlayUI : MonoBehaviour
 				PlayManager.ins.is_play = true;
 				PlayManager.ins.player.goIdle.SetActive(true);
 				PlayManager.ins.player.goRun.SetActive(false);
+			}).setOnUpdate((float f)=>
+			{
+				PlayManager.ins.stage.SortStage();
 			});//.setEaseOutQuad();
 			//LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
 			UpdateDistance(0);
@@ -229,14 +232,16 @@ public class PlayUI : MonoBehaviour
 
 		vecMove.x = rtDrag.localPosition.x * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
 		vecMove.y = rtDrag.localPosition.y * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
-
+		
+		PlayManager.ins.player.MoveUpdate(vecMove);
+		vecMove += PlayManager.ins.player.GetGap();
 		PlayManager.ins.stage.UpdateMove(vecMove);
-
+		
 		vec3 = rtBgTile.localPosition;
 		vec3.x -= vecMove.x;
 		vec3.y -= vecMove.y;
 		
-		 vecMove = vec3;
+		vecMove = vec3;
 		//배경 타일 반복 움직임
 		if (vec3.x > 0) vec3.x -= TILE_SIZE;
 		if (vec3.x < -TILE_SIZE) vec3.x += TILE_SIZE;
@@ -248,6 +253,9 @@ public class PlayUI : MonoBehaviour
 		{	//화면 끝에 도달해서 이동한 상황
 			PlayManager.ins.stage.bgObject.CheckBgObject();
 		}
+		vec3.x = -PlayManager.ins.stage.rt.localPosition.x;
+		vec3.y = -PlayManager.ins.stage.rt.localPosition.y;
+		PlayManager.ins.player.rt.localPosition = vec3;
 	}
 
 	public void AddCoin()

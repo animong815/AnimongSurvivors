@@ -216,7 +216,6 @@ public class PlayManager : MonoBehaviour
 			return;
 		}
 		ui.UpdateMove();
-		player.UpdatePlayer();
 		stage.UpdateStage();
 	}
 
