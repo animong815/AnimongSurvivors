@@ -37,9 +37,11 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Android/AndroidTokenClient.cs" />
+     <Compile Include="Assets/01_Scripts/Data/DataManager.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudDouble.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/AppleGameCenter/iOSCloudSaveWrapper.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/OurUtils/PlatformUtils.cs" />
+     <Compile Include="Assets/01_Scripts/Data/SkillData.cs" />
      <Compile Include="Assets/01_Scripts/Utils/LeanTween/LeanTween.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/Nearby/INearbyConnectionClient.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/SnapshotManager.cs" />
@@ -61,11 +63,13 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesPlatform.cs" />
      <Compile Include="Assets/01_Scripts/Play/PlayUI.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/TestProvider/TestProvider.cs" />
+     <Compile Include="Assets/01_Scripts/Data/DataBase.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/AchievementManager.cs" />
      <Compile Include="Assets/01_Scripts/Graphic/Gradient/UICornersGradient.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/UnifiedLeaderboard.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesAchievement.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/TestProvider/TestProviderStorageWrapper.cs" />
+     <Compile Include="Assets/01_Scripts/Play/BgObject.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/Nearby/ConnectionResponse.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/CommonStatusCodes.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Interfaces/ICloudProvider.cs" />
@@ -92,11 +96,13 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/NativeEventClient.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/Video/iVideoClient.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/PlayerProfile.cs" />
+     <Compile Include="Assets/01_Scripts/Data/EnemyData.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/PlayGamesClientFactory.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/TokenClient.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/JSONObject/JSONObject.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLocalUser.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/RealtimeManager.cs" />
+     <Compile Include="Assets/01_Scripts/Data/WaveData.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Interfaces/ICloudStorageProvider.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/DummyProvider/DummyStorageWrapper.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/AppleGameCenter/iOSCloudProvider.cs" />
@@ -119,7 +125,6 @@
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Interfaces/IPersistent.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudDecimal.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/Nearby/AdvertisingResult.cs" />
-     <Compile Include="Assets/01_Scripts/Play/ObjectCloud.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/DummyProvider/DummyProvider.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/StatsManager.cs" />
      <Compile Include="Assets/01_Scripts/Play/PlayManager.cs" />
@@ -146,13 +151,11 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/LeaderboardManager.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/SignInInteractivity.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/PlayGamesClientConfiguration.cs" />
-     <Compile Include="Assets/01_Scripts/Data/LevelData.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Quick Start Scripts/LeaderboardsButton.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Utils/EditorLeaderboardUtils.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/CloudProviderBase.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/OurUtils/Misc.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/GameData.cs" />
-     <Compile Include="Assets/01_Scripts/Play/ObjectCloudPool.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/ConflictResolver.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Quick Start Scripts/DeactivateOnCloudOnceEvent.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Android/AndroidHelperFragment.cs" />
@@ -162,6 +165,7 @@
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudFloat.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Quick Start Scripts/LoadSceneOnCloudOnceEvent.cs" />
      <Compile Include="Assets/01_Scripts/Utils/LeanTween/LeanTest.cs" />
+     <Compile Include="Assets/01_Scripts/Play/BgObjectList.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudLong.cs" />
      <Compile Include="Assets/01_Scripts/Play/Enemy.cs" />
      <Compile Include="Assets/01_Scripts/Play/PlayCoin.cs" />
@@ -170,6 +174,7 @@
      <Compile Include="Assets/Extensions/CloudOnce/Data/Leaderboards.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Quick Start Scripts/DeactivateOnAwakeIfNotGoogle.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Android/AndroidEventsClient.cs" />
+     <Compile Include="Assets/01_Scripts/Data/GlobalData.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudRequestResult.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/OurUtils/PlayGamesHelperObject.cs" />
      <Compile Include="Assets/01_Scripts/Play/ObjectBasePool.cs" />
@@ -201,7 +206,6 @@
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/CloudPrefs/CurrencyValue.cs" />
      <Compile Include="Assets/01_Scripts/Utils/LeanTween/LTDescrOptional.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Interfaces/IAchievementUtils.cs" />
-     <Compile Include="Assets/01_Scripts/Play/ObjectCloudPoolGroup.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/DataEnums.cs" />
      <Compile Include="Assets/01_Scripts/Graphic/Gradient/UIGradient.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/CloudPrefs/PersistentCurrency.cs" />
@@ -210,11 +214,9 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesUserProfile.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudCurrencyInt.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/Platforms/Android/AndroidClient.cs" />
+     <Compile Include="Assets/01_Scripts/Play/EnemyList.cs" />
      <Compile Include="Assets/01_Scripts/SceneManager.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLeaderboard.cs" />
-     <Compile Include="Assets/01_Scripts/Play/BgObject.cs" />
-     <Compile Include="Assets/01_Scripts/Play/BgObjectList.cs" />
-     <Compile Include="Assets/01_Scripts/Play/EnemyList.cs" />
      <None Include="Assets/GoogleMobileAds/GoogleMobileAds_version-7.0.0_manifest.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/LeaderboardsPropertyTemplate.cs.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/CloudVariablesPropertyTemplate.cs.txt" />

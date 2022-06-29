@@ -1,129 +1,76 @@
 ﻿using System.Collections.Generic;
-class UserData
+
+public class UserDataItem
 {
-	public int id;
-	public int id_main_hero;
-	public int level;
-	public ulong exp;
-	public string nickname;
-	public int frame;
-	public int icon;
-	public string country;
-
-	public CurrencyData currency;
-
-	public List<int> list_hero;
-	public List<int> list_item;
-	public List<int> list_equip;
-
+    public string prefab;
+    public int hp;
+    public int move_speed;
+    public int move_speed_stamina;
+    public int stamina_max;
+    public int stamina_use;
+    public int stamina_add;
+    public int groggy_value;
+    public string skill;
+    public int attack;
+    public int delay;
+    public int size;
+    public int range;
+    public int target_count;
+    public int defence;
 }
 
-class CurrencyData 
+public class UserData : DataBase
 {
-	public ulong diamond;
-	public ulong gold;
-	public ulong stamina;
-}
+    public Dictionary<int, UserDataItem> data;
+    private List<int> listId;
+    public override void Init()
+    {
+        base.Init();
+        data = new Dictionary<int, UserDataItem>();
+        listId = new List<int>();
+        Load("https://docs.google.com/spreadsheets/d/1j1df9NRMQL8ZuErrvuAiKUqkC_7uAAw8VR_JJhIBffM/export?format=csv&gid=1846910812");
+/*
+#if UNITY_EDITOR
+		Load("https://docs.google.com/spreadsheets/d/1j1df9NRMQL8ZuErrvuAiKUqkC_7uAAw8VR_JJhIBffM/export?format=csv&gid=0");
+#else
+		Load("https://docs.google.com/spreadsheets/d/1j1df9NRMQL8ZuErrvuAiKUqkC_7uAAw8VR_JJhIBffM/export?format=csv&gid=0");
+#endif
+*/
+    }
 
-class CharacterData 
-{
-	public int id;
-	public List<int> list_message;
-	public int hp;
-	public int mp;
-	public int power;
-	public List<int> list_attack;
-}
+    protected override void ParseDataFirst(string[] _row)
+    {
+        base.ParseDataFirst(_row);
 
-class HeroData : CharacterData
-{
+        for(int i=0; i< _row.Length; i++)
+        {
+            
+            if( i == idx_key || i == idx_desc) 
+            {
+                listId.Add(-1);
+                continue;
+            }
+            listId.Add( int.Parse(_row[i]));
+            //UnityEngine.Debug.Log("key : " + _row[i]);
+            data.Add(int.Parse(_row[i]), new UserDataItem());
+        }
+    }
 
-}
+    protected override void ParseData(string[] _row)
+    {
+        base.ParseData(_row);
+        //UnityEngine.Debug.Log("idx_key :" + idx_key + ",idx_desc:" + idx_desc);
+        
+        for(int i=0; i < _row.Length; i++)
+        {
+            if( i == idx_key || i == idx_desc) continue;
+            //UnityEngine.Debug.Log(i + ":"+ listId[i] + ":" +_row[idx_key]+ ":"+ _row[i]);
+            switch(_row[idx_key])
+            {
+                case "attack": data[listId[i]].attack = int.Parse(_row[i]); break;
+                
+            }
+        }
+    }
 
-class MonsterData : CharacterData 
-{
-	public int grow;
-	public int grade;
-}
-
-
-class ModeData 
-{
-	public int id;
-	public List<int> list_stage;
-	public int start_coin;
-	public int start_humancount;
-	public int max_humancount;
-	public int cost_humancount;
-	public bool is_refresh;
-	public int cost_resfresh;
-	public int time_ready;
-}
-
-class StageData 
-{
-	public int id;
-	public int id_res_background;
-	public List<int> list_wave;
-}
-
-class WaveData 
-{
-	public int id;
-	public List<int> list_monster;
-}
-
-
-class ItemData
-{
-	public int id;
-	public int id_res_icon;
-}
-
-class BattleItemData : ItemData 
-{
-	public int id_fx;
-}
-
-class EquipItemData : ItemData 
-{
-	public int power;
-	public int defence;
-}
-
-class DropItemData : ItemData 
-{
-	public int rate;
-}
-
-class ResourceData 
-{
-	public int id;
-	public string location;
-}
-
-class SoundData
-{
-	public int id;
-	public string location;
-}
-
-class CountryData 
-{
-	int id;
-	string key;
-}
-
-class MessageData_KR 
-{
-	int id;
-	string message;
-	int id_sound;
-}
-
-class MessageData_JP
-{
-	int id;
-	string message;
-	int id_sound;
 }

@@ -19,7 +19,7 @@ public class PlayManager : MonoBehaviour
 
 	public Stage stage;
 
-	public LevelData data;
+	public DataManager data;
 
 	public const float MAX_W = 70f;
 	public bool is_init = false;
@@ -143,8 +143,8 @@ public class PlayManager : MonoBehaviour
 		ui.btnGuest.obj.SetActive(false);
 		InitUI();
 		Init();
-		LevelData.ins.loading = loading;
-		LevelData.ins.LoadFirstLoad();
+		DataManager.ins.loading = loading;
+		DataManager.ins.LoadFirstLoad();
 
 		//is_init = true;
 

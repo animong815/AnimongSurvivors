@@ -50,17 +50,17 @@ public class ADManager : MonoBehaviour
 	public void ShowAd()
 	{
 		Debug.Log("ShowAd");
-		if (rewardedAd.IsLoaded()) // ±¤°í°¡ ·Îµå µÇ¾úÀ» ¶§
+		if (rewardedAd.IsLoaded()) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 		{
 			Debug.Log("rewardedAd.Show");
-			rewardedAd.Show(); // ±¤°í º¸¿©ÁÖ±â
+			rewardedAd.Show(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 		}
 	}
 
-	public void CreateAndLoadRewardedAd() // ±¤°í ´Ù½Ã ·ÎµåÇÏ´Â ÇÔ¼ö
+	public void CreateAndLoadRewardedAd() // ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Îµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	{
-		Debug.Log("CreateAndLoadRewardedAd::" + PlayManager.ins.data.ad_id);
-		AD_KEY = PlayManager.ins.data.ad_id;
+		Debug.Log("CreateAndLoadRewardedAd::" + PlayManager.ins.data.global.ad_id);
+		AD_KEY = PlayManager.ins.data.global.ad_id;
 
 #if UNITY_EDITOR
 		AD_KEY = "unexpected_platform";
@@ -89,12 +89,12 @@ public class ADManager : MonoBehaviour
 	}
 
 	public void HandleRewardedAdClosed(object sender, EventArgs args)
-	{  // »ç¿ëÀÚ°¡ ±¤°í¸¦ ´Ý¾ÒÀ» ¶§
-		CreateAndLoadRewardedAd();  // ±¤°í ´Ù½Ã ·Îµå
+	{  // ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ï¿½ï¿½ ï¿½ï¿½
+		CreateAndLoadRewardedAd();  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Îµï¿½
 	}
 
 	private void HandleUserEarnedReward(object sender, Reward e)
-	{   // ±¤°í¸¦ ´Ù ºÃÀ» ¶§
+	{   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		PlayManager.ins.ui.RetryNow();
 	}
 

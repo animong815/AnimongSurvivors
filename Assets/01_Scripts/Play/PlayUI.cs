@@ -155,7 +155,63 @@ public class PlayUI : MonoBehaviour
 	{
 		if (btnRetry.obj.activeSelf == true) return;
 		if (PlayManager.ins.is_play == false) return;
+#if UNITY_EDITOR
+		vecMove = Vector3.zero;
+		bool isKey = false;
+		float speed = 71f;
+		int dir = 0;
+		if(Input.GetKey("up") || Input.GetKey("w"))
+        {   //Debug.Log("↑ 키를 누르고 있는 동안 출력");
+			vecMove.y = speed * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+			isKey = true;
+        }
+        if(Input.GetKey("down") || Input.GetKey("s"))
+        {   //Debug.Log("↓ 키를 누르고 있는 동안 출력");
+			speed *= -1;
+			vecMove.y = speed * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+			isKey = true;
+		}
+        
+		if(speed < 0) speed *= -1;
 		
+		if(Input.GetKey("left") || Input.GetKey("a"))
+        {   //Debug.Log(" ← 키를 누르고 있는 동안 출력");
+			speed *= -1;
+			vecMove.x = speed * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+			isKey = true;
+			dir = 1;
+		}
+        if(Input.GetKey("right") || Input.GetKey("d"))
+        {   //Debug.Log(" → 키를 누르고 있는 동안 출력");
+			vecMove.x = speed * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
+			isKey = true;
+			dir = 2;
+        }
+
+		if(isKey)
+		{
+			MovePlayer();
+			if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
+			if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
+
+			if (dir == 1)
+			{
+				if (PlayManager.ins.player.tfRun.localScale.x > 0)
+				{
+					vec3 = Vector3.one;
+					vec3.x = -1;
+					PlayManager.ins.player.tfRun.localScale = vec3;
+				}
+			}
+			if (dir == 2)
+			{
+				if (PlayManager.ins.player.tfRun.localScale.x < 0)
+					PlayManager.ins.player.tfRun.localScale = Vector3.one;
+			}
+			return;
+		}
+
+#endif
 		if (isPress == false)
 		{   //컨트롤러 화면에 안보이도록
 			if (goControl.activeSelf) goControl.SetActive(false);
@@ -196,6 +252,8 @@ public class PlayUI : MonoBehaviour
 			return;
 		}
 #endif
+
+
 		//컨트롤러 화면에 보이도록
 		if (goControl.activeSelf == false) 
 		{ //처음 화면에 보이면서 위치 설정
@@ -230,9 +288,15 @@ public class PlayUI : MonoBehaviour
 				PlayManager.ins.player.tfRun.localScale = Vector3.one;
 		}
 
+		//Debug.Log(rtDrag.localPosition.x);
+
 		vecMove.x = rtDrag.localPosition.x * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
 		vecMove.y = rtDrag.localPosition.y * 0.05f * Time.smoothDeltaTime * PlayManager.ins.player.speed;
-		
+		MovePlayer();		
+	}
+
+	private void MovePlayer()
+	{
 		PlayManager.ins.player.MoveUpdate(vecMove);
 		vecMove += PlayManager.ins.player.GetGap();
 		PlayManager.ins.stage.UpdateMove(vecMove);
@@ -292,7 +356,7 @@ public class PlayUI : MonoBehaviour
 	public void InitRetryUI() 
 	{
 		timeRetryWaitStart = Time.time;
-		timeRetryWaitEnd = PlayManager.ins.data.ad_wait_time;
+		timeRetryWaitEnd = PlayManager.ins.data.global.ad_wait_time;
 
 		goControl.SetActive(false);
 		btnRetry.obj.SetActive(true);

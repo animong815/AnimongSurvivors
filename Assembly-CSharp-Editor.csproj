@@ -49,7 +49,6 @@
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Editor/Data/CloudOncePaths.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Editor/Utils/BuildUtils.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Editor/Data/PluginVersion.cs" />
-     <Compile Include="Assets/Editor/EditorLevel.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Editor/Utils/iOSPostBuild.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Data/JSONObject/Editor/EditorJsonHelper.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Editor/Utils/GooglePlayGamesSetup/GPGSUtil.cs" />

@@ -64,6 +64,7 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: f2403c1045dc45c4aa5d1906725987ed, type: 3}
+  - {fileID: 21300000, guid: acc38540c9f2d3647bd40177d530bca1, type: 3}
   - {fileID: 21300000, guid: eada1690037fd594aa273c45e598b673, type: 3}
   - {fileID: 21300000, guid: cf2ceda007c151244aa28c415f2ebac3, type: 3}
   - {fileID: 21300000, guid: c72524e0562b5774a891c071a6d65353, type: 3}
@@ -107,6 +108,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cc3b5c79868f200429b0900b3f903247, type: 3}
   - {fileID: 21300000, guid: 02a7ee89f9098d2408f1e920c63dc124, type: 3}
   - {fileID: 21300000, guid: eb5c5f999b22d5b4bb0c89b98509808e, type: 3}
+  - {fileID: 21300000, guid: cde222b9b59560344b50c83371800e35, type: 3}
   - {fileID: 21300000, guid: 083856b9feb55c6438d5c9cce23aa333, type: 3}
   - {fileID: 21300000, guid: e4c5e73a7ad51374f8d9dc6c8776273d, type: 3}
   - {fileID: 21300000, guid: 4c4b032b296b9424f854edf456fd9af9, type: 3}
@@ -114,7 +116,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8365184b77ad98f42ad24759be702c11, type: 3}
   - {fileID: 21300000, guid: 637fbc9b4cdadc84f864078cba376ec1, type: 3}
   - {fileID: 21300000, guid: 99851aaba81450645bf7f128c6cbca08, type: 3}
+  - {fileID: 21300000, guid: 6c2c6ceb91b7dd244b2155142101b64e, type: 3}
   - {fileID: 21300000, guid: 0bd8024ccef0b034eb734de3776dcf6d, type: 3}
+  - {fileID: 21300000, guid: c01c64ac80549104a8b14473db9c2513, type: 3}
   - {fileID: 21300000, guid: 0503485d54c81a942b2f1dd7fddd44a9, type: 3}
   - {fileID: 21300000, guid: 411395addc278fa40b9cd2b7174b6389, type: 3}
   - {fileID: 21300000, guid: f14cc6bdfcf47464e8c57336f6b7c1a8, type: 3}
@@ -138,8 +142,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cb0eeb8fa608d99468faf822e2bc7513, type: 3}
   - {fileID: 21300000, guid: f5e668bfa412b5c49b078df2c525db3c, type: 3}
   - {fileID: 21300000, guid: 15e6f4df63c8207449890cc679169fed, type: 3}
+  - {fileID: 21300000, guid: adadfeefd0394b247957573792ac5658, type: 3}
   m_PackedSpriteNamesToIndex:
   - btn_back
+  - Tree_240x320_01
   - bg_deco
   - btn_rp_setting
   - btn_blue_h80
@@ -183,6 +189,7 @@ SpriteAtlas:
   - btn_dis_h80
   - Grass_80x48_01
   - btn_open
+  - Bush_80x40_01_1
   - img_cloud_03
   - btn_start_bg_02
   - btn_start
@@ -190,7 +197,9 @@ SpriteAtlas:
   - img_x
   - img_cloud_04
   - btn_setting
+  - Bush_80x40_01
   - img_cloud_02
+  - Tree_200x320_01
   - BGbasic_160x160_01
   - icon_AD
   - img_title
@@ -214,6 +223,7 @@ SpriteAtlas:
   - icon_coin_01
   - Bush_80x80_01
   - btn_revive
+  - Bush_160x120_02
   m_RenderDataMap: {}
   m_Tag: AtlasUI
   m_IsVariant: 0
