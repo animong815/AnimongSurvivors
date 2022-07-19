@@ -86,6 +86,10 @@ public class DataManager : MonoBehaviour
 		is_load = false;
 		is_first_load = true;
 
+		//Debug.Log("*** " + user.dic[2].value.ContainsKey(SkillData.move_speed));
+		//Debug.Log("*** " + user.dic[2].value[SkillData.move_speed]);
+	
+
 		if (PlayManager.ins != null) PlayManager.ins.Init(false);
 	}
 }

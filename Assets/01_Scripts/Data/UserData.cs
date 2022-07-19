@@ -2,32 +2,28 @@
 
 public class UserDataItem
 {
+    public int id;
+    public int level;
     public string prefab;
-    public int hp;
-    public int move_speed;
-    public int move_speed_stamina;
-    public int stamina_max;
-    public int stamina_use;
-    public int stamina_add;
-    public int groggy_value;
-    public string skill;
-    public int attack;
-    public int delay;
-    public int size;
-    public int range;
-    public int target_count;
-    public int defence;
+    public int skill;
+    public Dictionary<string, int> value;
+    public Dictionary<string, int[]> values;
 }
 
 public class UserData : DataBase
 {
-    public Dictionary<int, UserDataItem> data;
-    private List<int> listId;
+    public Dictionary<int,Dictionary<int, UserDataItem>> dic;
+    private List<int> listIdx;
+    private List<int> listLevel;
+    private string[] types;
+
+
     public override void Init()
     {
         base.Init();
-        data = new Dictionary<int, UserDataItem>();
-        listId = new List<int>();
+        dic = new Dictionary<int, Dictionary<int, UserDataItem>>();
+        listIdx = new List<int>();
+        listLevel = new List<int>();
         Load("https://docs.google.com/spreadsheets/d/1j1df9NRMQL8ZuErrvuAiKUqkC_7uAAw8VR_JJhIBffM/export?format=csv&gid=1846910812");
 /*
 #if UNITY_EDITOR
@@ -47,12 +43,12 @@ public class UserData : DataBase
             
             if( i == idx_key || i == idx_desc) 
             {
-                listId.Add(-1);
+                listIdx.Add(-1);
                 continue;
             }
-            listId.Add( int.Parse(_row[i]));
-            //UnityEngine.Debug.Log("key : " + _row[i]);
-            data.Add(int.Parse(_row[i]), new UserDataItem());
+            listIdx.Add(int.Parse(_row[i]));
+            if(dic.ContainsKey(listIdx[i])) continue;
+            dic.Add(listIdx[i], new Dictionary<int, UserDataItem>());
         }
     }
 
@@ -60,15 +56,72 @@ public class UserData : DataBase
     {
         base.ParseData(_row);
         //UnityEngine.Debug.Log("idx_key :" + idx_key + ",idx_desc:" + idx_desc);
-        
+        if(_row[idx_key] == "level")
+        {
+            for(int i =0; i< _row.Length; i++)
+            {
+                if( i == idx_key || i == idx_desc) 
+                {
+                    listLevel.Add(-1);
+                    continue;
+                }
+                listLevel.Add( int.Parse(_row[i]));
+                dic[listIdx[i]].Add(listLevel[i], new UserDataItem());
+                dic[listIdx[i]][listLevel[i]].id = listIdx[i];
+                dic[listIdx[i]][listLevel[i]].level = listLevel[i];
+                dic[listIdx[i]][listLevel[i]].value = new Dictionary<string, int>();
+                dic[listIdx[i]][listLevel[i]].values = new Dictionary<string, int[]>();
+            }
+            //UnityEngine.Debug.Log("key : " + _row[i]);
+            return;
+        }
+        if(_row[idx_key] == "type")
+        {
+            types = _row;
+            return;
+        }
+        int idx;
+        int level;
+        string type;
+        int value;
+        string[] values;
+        //UnityEngine.Debug.Log("idx_key : " + idx_key + ", idx_desc : " + idx_desc+ ", _row.Length : " + _row.Length);
         for(int i=0; i < _row.Length; i++)
         {
             if( i == idx_key || i == idx_desc) continue;
             //UnityEngine.Debug.Log(i + ":"+ listId[i] + ":" +_row[idx_key]+ ":"+ _row[i]);
+            idx = listIdx[i];
+            level = listLevel[i];
             switch(_row[idx_key])
             {
-                case "attack": data[listId[i]].attack = int.Parse(_row[i]); break;
-                
+                case "prefab":              
+                    dic[idx][level].prefab = _row[i]; 
+                    break;
+                case "skill":
+                    dic[idx][level].skill = int.Parse(_row[i]);
+                    break;
+                case "value":
+                    //UnityEngine.Debug.Log("idx : " + idx + ", types[i] : " + types[i] + ",check : " + dic[idx].value.ContainsKey(types[i]));
+                    type = types[i].Trim();
+                    if(string.IsNullOrEmpty(type) || string.IsNullOrEmpty(_row[i])) break;
+                    if(int.TryParse(_row[i], out value) == false)
+                    {
+                        if(dic[idx][level].values.ContainsKey(type) == false)
+                        {
+                            values = _row[i].Split('|');
+                            dic[idx][level].values.Add(type, new int[values.Length]);
+                            for(int j =0; j < values.Length; j++)
+                            {
+                                dic[idx][level].values[type][j] = int.Parse(values[j]);
+                            }
+                        }
+                        break;
+                    }
+                    if(dic[idx][level].value.ContainsKey(type) == false)
+                    {
+                        dic[idx][level].value.Add(type, value);
+                    }
+                break;
             }
         }
     }

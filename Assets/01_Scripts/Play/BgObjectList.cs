@@ -16,7 +16,7 @@ public class BgObjectList : MonoBehaviour
     private const float TILE_SIZE = PlayUI.TILE_SIZE * 0.5f;
     private const float TILE_SIZE_HALF = PlayUI.TILE_SIZE * 0.25f;
     private const int VIEW_W = 20;
-    private const int VIEW_H = 12;
+    private const int VIEW_H = 16;
     private int loopI;
     private Vector3 vec;
     private float CHECK_W;

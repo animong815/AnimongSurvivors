@@ -53,17 +53,15 @@ public class DataBase  : MonoBehaviour
 			{
 				for (j = 0; j < row.Length; j++)
 				{
-					if (row[j].Contains("#")) 
-					{
-						idx_desc = j;
-						continue;
-					}
+					if (row[j].Contains("#")) idx_desc = j;
 					if (row[j].Contains("key")) idx_key = j;
 					if (row[j].Contains("value")) idx_value = j;
 				}
 				ParseDataFirst(row);
 				continue;
 			}
+			if(row.Length <= idx_key) continue;
+			if(row[idx_key] == "desc") continue;
 
             ParseData(row);
 		}
