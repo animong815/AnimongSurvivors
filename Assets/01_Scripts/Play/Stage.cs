@@ -160,7 +160,7 @@ public class Stage : MonoBehaviour
     {
         for (int i = 0; i < createCount; i++)
         {
-            tmpEnemy = GetEnemy(0);
+            tmpEnemy = GetEnemy(Random.Range(0, enemies.Count));
             trycnt = 0;
             while(trycnt == 0 || (tmpEnemy.HitCheck() && trycnt < 30))
             {
