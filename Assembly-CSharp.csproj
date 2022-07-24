@@ -180,6 +180,7 @@
      <Compile Include="Assets/01_Scripts/Play/ObjectBasePool.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Utils/GoogleAchievementUtils.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Utils/GoogleLeaderboardUtils.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Stage.Wave.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/GameInfo.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Utils/CloudOnceUtils.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudCurrencyFloat.cs" />
@@ -214,9 +215,12 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesUserProfile.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudCurrencyInt.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/Platforms/Android/AndroidClient.cs" />
-     <Compile Include="Assets/01_Scripts/Play/EnemyList.cs" />
      <Compile Include="Assets/01_Scripts/SceneManager.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Stage.Enemy.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLeaderboard.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Skill.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Stage.Skill.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Player.Skill.cs" />
      <None Include="Assets/GoogleMobileAds/GoogleMobileAds_version-7.0.0_manifest.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/LeaderboardsPropertyTemplate.cs.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/CloudVariablesPropertyTemplate.cs.txt" />
