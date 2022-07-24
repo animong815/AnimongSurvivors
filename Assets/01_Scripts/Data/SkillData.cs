@@ -10,6 +10,7 @@ public class SkillDataItem
     public SkillData.TYPE skill_type;
     public Dictionary<string, int> value;
     public Dictionary<string, int[]> values;
+    public float activeTime;
 }
 
 public class SkillData : DataBase

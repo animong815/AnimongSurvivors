@@ -12,7 +12,6 @@ public class Enemy : ObjectBase
 
     private Vector3 vec;
     private Vector3 vecBack;
-    private bool is_right = true;
     private bool is_right_back = true;
     private float fnum;
     private float speed = 50f;
@@ -26,6 +25,7 @@ public class Enemy : ObjectBase
 
     public override void Init() 
     {
+        base.Init();
         type = TYPE.Enemy;
         //Debug.Log( "canvas.scaleFactor :: " + PlayManager.ins.canvas.scaleFactor );
         //Debug.Log( "canvas.scaleFactor :: " + PlayManager.ins.canvas.referencePixelsPerUnit );

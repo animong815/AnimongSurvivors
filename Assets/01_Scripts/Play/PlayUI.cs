@@ -11,6 +11,9 @@ public class PlayUI : MonoBehaviour
 	public Text txtCoin;
 	public Text txtTopDistance;
 	
+	public Text txtTime;
+	public Image imgStamina;
+
 	public GameObject objIngame;
 	public GameObject objMain;
 
@@ -145,6 +148,8 @@ public class PlayUI : MonoBehaviour
 			});//.setEaseOutQuad();
 			//LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
 			UpdateDistance(0);
+			PlayManager.ins.stage.StartStage();
+
 			return;
 		}
 		if (objMain.activeSelf) return;
@@ -188,6 +193,8 @@ public class PlayUI : MonoBehaviour
 			dir = 2;
         }
 
+		PlayManager.ins.player.SetUseStamina(isKey && !Input.GetKey(KeyCode.LeftShift));
+
 		if(isKey)
 		{
 			MovePlayer();
@@ -201,12 +208,14 @@ public class PlayUI : MonoBehaviour
 					vec3 = Vector3.one;
 					vec3.x = -1;
 					PlayManager.ins.player.tfRun.localScale = vec3;
+					PlayManager.ins.player.is_right = false;
 				}
 			}
 			if (dir == 2)
 			{
 				if (PlayManager.ins.player.tfRun.localScale.x < 0)
 					PlayManager.ins.player.tfRun.localScale = Vector3.one;
+				PlayManager.ins.player.is_right = true;
 			}
 			return;
 		}
@@ -269,6 +278,12 @@ public class PlayUI : MonoBehaviour
 			vec3.x = vec3.x *  (MAX_DRAG / drag_distance);
 			vec3.y = vec3.y *  (MAX_DRAG / drag_distance);
 			rtDrag.localPosition = vec3;
+			//화면 끝으로 드래그 한 경우 
+			PlayManager.ins.player.SetUseStamina(true);
+		}
+		else
+		{
+			PlayManager.ins.player.SetUseStamina(false);
 		}
 		if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
 		if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
@@ -394,6 +409,7 @@ public class PlayUI : MonoBehaviour
 		btnChar.obj.SetActive(true);
 		btnRanking.obj.SetActive(true);
 		objTitle.SetActive(true);
+		objIngame.SetActive(false);
 
 		//stage 초기화
 		PlayManager.ins.stage.ResetStage();

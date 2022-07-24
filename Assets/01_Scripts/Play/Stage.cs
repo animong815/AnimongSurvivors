@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage : MonoBehaviour
+public partial class Stage : MonoBehaviour
 {
     public GameObject go;
     public RectTransform rt;
@@ -10,10 +10,8 @@ public class Stage : MonoBehaviour
     public RectTransform rtGround;
     public RectTransform rtEnemy;
     public Player player;
-    public List<Enemy> enemies;
     public BgObjectList bgObject;
 
-    private Dictionary<int, List<Enemy>> listEnemy;
     private List<ObjectBase> list;
     private List<ObjectBase> listView;
 
@@ -21,7 +19,7 @@ public class Stage : MonoBehaviour
     private Vector3 vec;
 
     private ObjectBase tmp;
-    private Enemy tmpEnemy;
+
     private bool is_init = false;
 
     private float enemy_create_gap = 100f;
@@ -36,38 +34,17 @@ public class Stage : MonoBehaviour
         {
             list = new List<ObjectBase>();
             listView =  new List<ObjectBase>();
-            listEnemy = new Dictionary<int, List<Enemy>>();
-            for(int i = 0; i< enemies.Count; i++) 
-            {
-                listEnemy.Add(i, new List<Enemy>());
-            }
+
+            InitEnemy();
+            InitSkill();
 
             player.rt.SetParent(rtGround);
             player.Init();
-
             list.Add(player);
-            for (int i = 0; i < enemies.Count; i++)
-                enemies[i].go.SetActive(false);
-            /*
-            for (int i = 0; i < 300; i++)
-            {
-                tmpEnemy = Instantiate<Enemy>(enemies[0], rtGround);
-                tmpEnemy.rt.localScale = Vector3.one;
-                tmpEnemy.rt.localRotation = Quaternion.identity;
-                vec.x = Random.Range(-1000, 1000);
-                vec.y = Random.Range(-500, 500);
-                tmpEnemy.rt.localPosition = vec;
-                tmpEnemy.go.SetActive(true);
-                tmpEnemy.go.name = "Mozzi_" + i;
-                tmpEnemy.Init();
-                list.Add(tmpEnemy);
-            }
-            */
             
             SortStage();
             
             createTime = Time.time;
-
             bgObject.Init();
 
             is_init = true;
@@ -77,6 +54,8 @@ public class Stage : MonoBehaviour
 
         PlayManager.ins.ui.rtBgTile.anchoredPosition =
         rt.anchoredPosition = vec;
+
+        ResetStage();
         
     }
     public void ResetStage()
@@ -90,8 +69,15 @@ public class Stage : MonoBehaviour
 
         for(i =0; i< listDelete.Count; i++)
         {
-            if(listDelete[i].type != ObjectBase.TYPE.Enemy) continue;
-            ReturnEnemy(listDelete[i] as Enemy);
+            switch(listDelete[i].type)
+            {
+                case ObjectBase.TYPE.Enemy:
+                    ReturnEnemy(listDelete[i] as Enemy);
+                    break;
+                case ObjectBase.TYPE.Skill:
+                    ReturnSkill(listDelete[i] as Skill);
+                    break;
+            }
         }
         listDelete.Clear();
         listDelete = null;
@@ -104,7 +90,16 @@ public class Stage : MonoBehaviour
         vec.y = 50f;
         PlayManager.ins.player.rt.anchoredPosition = vec;
 
+        PlayManager.ins.ui.txtTime.text = "00:00";
+        PlayManager.ins.ui.imgStamina.fillAmount = 1f;
+
         bgObject.ResetBgObject();
+    }
+
+    public void StartStage()
+    {
+        PlayManager.ins.player.SetData();
+        StartWave();
     }
 
     public void ReturnEnemy(Enemy _enemy) 
@@ -116,76 +111,20 @@ public class Stage : MonoBehaviour
         _enemy.rt.SetParent(rtEnemy);
     }
 
-    private Enemy GetEnemy(int _idx) 
-    {
-        for(int i = 0; i < listEnemy[_idx].Count; i++)
-        {
-            if(listEnemy[_idx][i].go.activeSelf == false)
-            {
-                tmpEnemy = listEnemy[_idx][i];
-                listEnemy[_idx].Remove(tmpEnemy);
-                tmpEnemy.rt.SetParent(rtGround);
-                tmpEnemy.go.SetActive(true);
-                list.Add(tmpEnemy);
-                listView.Add(tmpEnemy);
-                return tmpEnemy;
-            }
-        }
-        tmpEnemy = Instantiate<Enemy>(enemies[_idx], rtGround);
-        tmpEnemy.rt.localScale = Vector3.one;
-        tmpEnemy.rt.localRotation = Quaternion.identity;
-        tmpEnemy.go.SetActive(true);
-        tmpEnemy.go.name = $"Mozzi_{_idx}";
-        tmpEnemy.idx = _idx;
-        tmpEnemy.Init();
-        list.Add(tmpEnemy);
-        listView.Add(tmpEnemy);
-        return tmpEnemy;
-    }
     public void UpdateMove(Vector3 _vecMove)
     {
         //Debug.Log("_vecMove : " + _vecMove);
         _vecMove.z = 0;
         rt.localPosition -= _vecMove;
     }
+
     public void UpdateStage()
     {
         if (PlayManager.ins.is_play == false) return;
         if (Time.time > createTime) CreateEnemy();
 
         SortStage();
-    }
-
-    private void CreateEnemy() 
-    {
-        for (int i = 0; i < createCount; i++)
-        {
-            tmpEnemy = GetEnemy(Random.Range(0, enemies.Count));
-            trycnt = 0;
-            while(trycnt == 0 || (tmpEnemy.HitCheck() && trycnt < 30))
-            {
-                trycnt++;
-                switch (Random.Range(0, 3)) 
-                {
-                    case 0:
-                        vec.x = player.rt.localPosition.x + Random.Range((Screen.width * -0.5f) - enemy_create_gap, (Screen.width * 0.5f) + enemy_create_gap);
-                        vec.y = player.rt.localPosition.y + ((Random.Range(0f, enemy_create_gap) + (Screen.height * 0.5f)) * (Random.Range(0, 2) == 0 ? 1f : -1f));
-                        break;
-                    case 1:
-                        vec.x = player.rt.localPosition.x + ((Random.Range(0f, enemy_create_gap) + (Screen.width * 0.5f)) * (Random.Range(0, 2) == 0 ? 1f : -1f));
-                        vec.y = player.rt.localPosition.y + Random.Range((Screen.height * -0.5f) - enemy_create_gap, (Screen.height * 0.5f) + enemy_create_gap);
-                        break;
-                    default:
-                        vec.x = player.rt.localPosition.x + ((Random.Range(0f, enemy_create_gap) + (Screen.width * 0.5f)) * (Random.Range(0, 2) == 0 ? 1f : -1f));
-                        vec.y = player.rt.localPosition.y + ((Random.Range(0f, enemy_create_gap) + (Screen.height * 0.5f)) * (Random.Range(0, 2) == 0 ? 1f : -1f));
-                        break;
-                }
-
-                tmpEnemy.rt.localPosition = vec;
-            }
-        }
-        createTime = Time.time + createDelay;
-        //createTime = Time.time + 999999999999;
+        UpdateWave();
     }
 
     public void AddList(ObjectBase _obj)
@@ -212,10 +151,16 @@ public class Stage : MonoBehaviour
             //if(listView.Count <= sorti) continue;
             //listView[sorti].UpdateObject();
         }
+
         for(sorti = 0; sorti < listView.Count; sorti++)
         {
-            if(listView[sorti].type != ObjectBase.TYPE.Enemy) continue;
-            listView[sorti].UpdateObject();
+            switch(listView[sorti].type)
+            {
+                case ObjectBase.TYPE.Enemy:
+                case ObjectBase.TYPE.Skill:
+                    listView[sorti].UpdateObject();
+                    break;
+            }
         }
     }
 }

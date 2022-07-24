@@ -9,7 +9,8 @@ public class ObjectBase : MonoBehaviour
 		Player,
 		Enemy,
 		BgOver,
-		BgBack
+		BgBack,
+		Skill,
 	}
 
 	public GameObject go;
@@ -20,13 +21,20 @@ public class ObjectBase : MonoBehaviour
 
     public CircleCollider2D col;
 	public BoxCollider2D col_box;
-
+	[HideInInspector]
+	public bool is_right = true;
+	private Vector3 beforePos;
 	protected Vector3 prevPos;
 	protected Vector2 vecX;
 	protected Vector2 vecY;
 	public virtual void Init()
 	{
 
+	}
+
+	public void SetBeforePos(Vector3 _vec)
+	{
+		beforePos = _vec;
 	}
 	public virtual void UpdateObject() 
 	{
@@ -65,6 +73,8 @@ public class ObjectBase : MonoBehaviour
 
 	protected void CheckBgObject(HitObject _hitObj)
 	{
+		prevPos= rt.localPosition;
+
 		vecX = rt.localPosition;
 		vecX.x = GetOffset(_hitObj, true);
 		if(GetOffset(_hitObj, true) < rt.localPosition.x + col.offset.x)
@@ -79,7 +89,7 @@ public class ObjectBase : MonoBehaviour
 		else
 			vecY.y -= GetHalf(_hitObj, false) + col.radius;
 
-		if(Vector3.Distance(prevPos,vecX) < Vector3.Distance(prevPos,vecY))
+		if(Vector3.Distance(prevPos,vecX) > Vector3.Distance(prevPos,vecY))
 		{	//X축기준으로 이동이 더 적게 이동한 경우 x축으로 충돌체 끝에 위치후 y이동만 적용
 			vecX.y = rt.localPosition.y;
 			vecX.x -= col.offset.x;
