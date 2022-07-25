@@ -14,6 +14,7 @@ public class DataBase  : MonoBehaviour
     protected int idx_key;
     protected int idx_value;
 	protected int idx_desc;
+	protected int idx_max;
     virtual public void Init()
     {
 
@@ -47,6 +48,7 @@ public class DataBase  : MonoBehaviour
 
 		for (i = 0; i < cell.Length; i++)
 		{
+			cell[i] = cell[i].Trim();
 			row = cell[i].Split(CHAR_COMMA);
 			
 			if (i == 0)
@@ -56,7 +58,9 @@ public class DataBase  : MonoBehaviour
 					if (row[j].Contains("#")) idx_desc = j;
 					if (row[j].Contains("key")) idx_key = j;
 					if (row[j].Contains("value")) idx_value = j;
+					if(string.IsNullOrEmpty(row[j])) break;
 				}
+				idx_max = j;
 				ParseDataFirst(row);
 				continue;
 			}

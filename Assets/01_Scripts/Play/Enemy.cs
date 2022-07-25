@@ -9,19 +9,23 @@ public class Enemy : ObjectBase
     public GameObject goIdle;
     public RectTransform rtRun;
     public GameObject goRun;
-
+    public UnityEngine.UI.Image img;
     private Vector3 vec;
     private Vector3 vecBack;
     private bool is_right_back = true;
     private float fnum;
     private float speed = 50f;
+    private float hp = 0f;
     private Collider2D[] hit;
     private int hnum;
     private HitObject hitObj;
     private bool is_collide;
-
+    private float lifeTime = 0f;
     private const string CHECK_NAME_PLAYER = "Player";
     private const string CHECK_NAME_BG = "Bg";
+
+    [HideInInspector]
+    public EnemyDataItem data;
 
     public override void Init() 
     {
@@ -35,6 +39,25 @@ public class Enemy : ObjectBase
         //goIdle.SetActive(true);
         //goRun.SetActive(false);
     }
+
+    public void SetData(EnemyDataItem _data)
+    {
+        data = _data;
+        speed = data.speed;
+        hp = data.hp;
+        lifeTime = (_data.life_time < 0) ? -1f : Time.time + _data.life_time;
+        if(img != null) img.color = _data.color;
+    }
+    
+    public void Damage(int _attack)
+    {
+        hp -= _attack;
+        if(hp <= 0)
+        {
+            PlayManager.ins.stage.ReturnEnemy(this);
+        }
+    }
+
     public override void UpdateObject()
     {
         base.UpdateObject();
@@ -46,6 +69,7 @@ public class Enemy : ObjectBase
         if(PlayManager.ins.is_play == false) return;
         MoveDirect();
         SetSize();
+        if(lifeTime != -1f && lifeTime < Time.time) PlayManager.ins.stage.ReturnEnemy(this);
     }
     private void MoveDirect()
     {

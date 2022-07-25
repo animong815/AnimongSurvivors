@@ -65,7 +65,7 @@ public class SkillData : DataBase
 
         for(int i=0; i< _row.Length; i++)
         {
-            
+            if( i == idx_max) break;
             if( i == idx_key || i == idx_desc) 
             {
                 listIdx.Add(-1);
@@ -85,6 +85,7 @@ public class SkillData : DataBase
         {
             for(int i =0; i< _row.Length; i++)
             {
+                if( i == idx_max) break;
                 if( i == idx_key || i == idx_desc) 
                 {
                     listLevel.Add(-1);
@@ -114,6 +115,7 @@ public class SkillData : DataBase
         //UnityEngine.Debug.Log("idx_key : " + idx_key + ", idx_desc : " + idx_desc+ ", _row.Length : " + _row.Length);
         for(int i=0; i < _row.Length; i++)
         {
+            if( i == idx_max) break;
             if( i == idx_key || i == idx_desc) continue;
             //UnityEngine.Debug.Log(i + ":"+ listId[i] + ":" +_row[idx_key]+ ":"+ _row[i]);
             idx = listIdx[i];

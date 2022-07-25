@@ -15,15 +15,18 @@ public class Skill : ObjectBase
     private HitObject hitObj;
     private Vector2 col_size;
     private float scale;
+    private HashSet<Enemy> hashAttackEnemy;
     public override void Init()
     {
         base.Init();
         type = TYPE.Skill;
         col_size = col_box.size;
+        hashAttackEnemy = new HashSet<Enemy>();
     }
 
     public void SetData(SkillDataItem _data, ObjectBase _actor)
     {
+        hashAttackEnemy.Clear();
         data = _data;
         endtime = Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         rt.localScale = Vector3.one;
@@ -84,7 +87,10 @@ public class Skill : ObjectBase
                     switch(hitObj.CurrentType)
                     { 
                         case ObjectBase.TYPE.Enemy:
-                            PlayManager.ins.stage.ReturnEnemy(hitObj.enemy);
+                            //PlayManager.ins.stage.ReturnEnemy(hitObj.enemy);
+                            if(hashAttackEnemy.Contains(hitObj.enemy)) break; //이미 공격한 적은 공격하지 않음
+                            hitObj.enemy.Damage(data.value[SkillData.attack]);
+                            hashAttackEnemy.Add(hitObj.enemy);
                             is_collide = true;
                         break;          
                         default: break;

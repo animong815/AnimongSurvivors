@@ -6,19 +6,27 @@ public partial class Stage
 {
     public List<Enemy> enemies;
 
-    private Dictionary<int, List<Enemy>> listEnemy;
+    private Dictionary<string, List<Enemy>> listEnemy;
+    private Dictionary<string, int> keyEnemy;
     private Enemy tmpEnemy;
+
+    //private float enemy_create_gap = 100f;
+    //private float createTime = 0f;
+    //private float createDelay = 3f;
+    //private int createCount = 5;
 
     private void InitEnemy()
     {
-        listEnemy = new Dictionary<int, List<Enemy>>();
-        for(int i = 0; i< enemies.Count; i++) 
-        {
-            listEnemy.Add(i, new List<Enemy>());
-        }
+        //createTime = Time.time;
+        listEnemy = new Dictionary<string, List<Enemy>>();
+        keyEnemy = new Dictionary<string, int>();
+        
         for (int i = 0; i < enemies.Count; i++)
+        {
+            listEnemy.Add(enemies[i].go.name, new List<Enemy>());   
+            keyEnemy.Add(enemies[i].go.name, i); 
             enemies[i].go.SetActive(false);
-
+        }
         /*
         for (int i = 0; i < 300; i++)
         {
@@ -42,31 +50,45 @@ public partial class Stage
     }
     private Enemy GetEnemy(int _idx) 
     {
-        for(int i = 0; i < listEnemy[_idx].Count; i++)
+        if(PlayManager.ins.data.enemy.dic.ContainsKey(_idx) == false)
         {
-            if(listEnemy[_idx][i].go.activeSelf == false)
+            Debug.LogWarning("enemy " + _idx + " not have");
+            return null;
+        }
+        string key = PlayManager.ins.data.enemy.dic[_idx].prefab;
+        if(keyEnemy.ContainsKey(key) == false)
+        {
+            Debug.LogWarning("enemy " + key + " not have prefab");
+            return null;
+        }
+
+        for(int i = 0; i < listEnemy[key].Count; i++)
+        {
+            if(listEnemy[key][i].go.activeSelf == false)
             {
-                tmpEnemy = listEnemy[_idx][i];
-                listEnemy[_idx].Remove(tmpEnemy);
+                tmpEnemy = listEnemy[key][i];
+                listEnemy[key].Remove(tmpEnemy);
                 tmpEnemy.rt.SetParent(rtGround);
                 tmpEnemy.go.SetActive(true);
+                tmpEnemy.SetData(PlayManager.ins.data.enemy.dic[_idx]);
                 list.Add(tmpEnemy);
                 listView.Add(tmpEnemy);
                 return tmpEnemy;
             }
         }
-        tmpEnemy = Instantiate<Enemy>(enemies[_idx], rtGround);
+
+        tmpEnemy = Instantiate<Enemy>(enemies[keyEnemy[key]], rtGround);
         tmpEnemy.rt.localScale = Vector3.one;
         tmpEnemy.rt.localRotation = Quaternion.identity;
         tmpEnemy.go.SetActive(true);
-        tmpEnemy.go.name = $"Mozzi_{_idx}";
         tmpEnemy.idx = _idx;
         tmpEnemy.Init();
+        tmpEnemy.SetData(PlayManager.ins.data.enemy.dic[_idx]);
         list.Add(tmpEnemy);
         listView.Add(tmpEnemy);
         return tmpEnemy;
     }
-
+    /*
     private void CreateEnemy() 
     {
         for (int i = 0; i < createCount; i++)
@@ -98,4 +120,5 @@ public partial class Stage
         createTime = Time.time + createDelay;
         //createTime = Time.time + 999999999999;
     }
+    */
 }

@@ -22,12 +22,6 @@ public partial class Stage : MonoBehaviour
 
     private bool is_init = false;
 
-    private float enemy_create_gap = 100f;
-    private float createTime = 0f;
-    private float createDelay = 3f;
-    private int createCount = 5;
-    private int trycnt = 0;
-
     public void Init()
     {
         if (is_init == false)
@@ -44,7 +38,6 @@ public partial class Stage : MonoBehaviour
             
             SortStage();
             
-            createTime = Time.time;
             bgObject.Init();
 
             is_init = true;
@@ -106,7 +99,7 @@ public partial class Stage : MonoBehaviour
     {
         listView.Remove(_enemy);
         list.Remove(_enemy);
-        listEnemy[_enemy.idx].Add(_enemy);
+        listEnemy[_enemy.data.prefab].Add(_enemy);
         _enemy.go.SetActive(false);
         _enemy.rt.SetParent(rtEnemy);
     }
@@ -121,10 +114,10 @@ public partial class Stage : MonoBehaviour
     public void UpdateStage()
     {
         if (PlayManager.ins.is_play == false) return;
-        if (Time.time > createTime) CreateEnemy();
+        //if (Time.time > createTime) CreateEnemy();
 
-        SortStage();
         UpdateWave();
+        SortStage();
     }
 
     public void AddList(ObjectBase _obj)

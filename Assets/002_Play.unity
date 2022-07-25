@@ -1416,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: ec998261a08a1094caacc9c180b57bac,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi
+      value: mozzi
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: ec998261a08a1094caacc9c180b57bac,
         type: 3}
@@ -3575,7 +3575,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: c8f76ec83dcd24743944c13a5ed669a7,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi_S03
+      value: mozzi_s03
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: c8f76ec83dcd24743944c13a5ed669a7,
         type: 3}
@@ -4054,7 +4054,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: bea99540e24d840b7aa0085cf7dfd37e,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi_S01
+      value: mozzi_s01
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: bea99540e24d840b7aa0085cf7dfd37e,
         type: 3}
@@ -6482,7 +6482,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: 50599f5261f194041851f4c1c10a4a6d,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi_S04
+      value: mozzi_s04
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: 50599f5261f194041851f4c1c10a4a6d,
         type: 3}
@@ -13680,7 +13680,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: 93784ef7ba6f54fab82d2eeb28626f54,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi_S02
+      value: mozzi_s02
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: 93784ef7ba6f54fab82d2eeb28626f54,
         type: 3}
@@ -13984,7 +13984,7 @@ PrefabInstance:
     - target: {fileID: 1378045225870050349, guid: 8d8a5763d71b1428faee6cf2f629d73f,
         type: 3}
       propertyPath: m_Name
-      value: Mozzi_S05
+      value: mozzi_s05
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: 8d8a5763d71b1428faee6cf2f629d73f,
         type: 3}

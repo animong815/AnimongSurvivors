@@ -9,11 +9,11 @@ public class EnemyDataItem
     public int hp;
     public int speed;
     public int attack;
-    public int attack_delay;
-    public int life_time;
+    public float attack_delay;
+    public float life_time;
     public string direct_type;
     public string touch_type;
-    public int scale;
+    public float scale;
     public Color color;
 }
 
@@ -44,7 +44,7 @@ public class EnemyData : DataBase
 
         for(int i=0; i< _row.Length; i++)
         {
-            
+            if( i == idx_max) break;
             if( i == idx_key || i == idx_desc) 
             {
                 listIdx.Add(-1);
@@ -62,6 +62,7 @@ public class EnemyData : DataBase
         int idx;
         for(int i=0; i < _row.Length; i++)
         {
+            if( i == idx_max) break;
             if( i == idx_key || i == idx_desc) continue;
             idx = listIdx[i];
             switch(_row[idx_key])
@@ -72,11 +73,11 @@ public class EnemyData : DataBase
                  case "hp": dic[idx].hp = int.Parse(_row[i]); break;
                 case "speed": dic[idx].speed = int.Parse(_row[i]); break;
                 case "attack": dic[idx].attack = int.Parse(_row[i]); break;
-                case "attack_delay": dic[idx].attack_delay = int.Parse(_row[i]); break;
-                case "life_time": dic[idx].life_time = int.Parse(_row[i]); break;
+                case "attack_delay": dic[idx].attack_delay = float.Parse(_row[i]) * 0.001f; break;
+                case "life_time": dic[idx].life_time = float.Parse(_row[i]) * 0.001f; break;
                 case "direct_type": dic[idx].direct_type = _row[i]; break;
                 case "touch_type": dic[idx].touch_type = _row[i]; break;
-                case "scale": dic[idx].scale = int.Parse(_row[i]); break;
+                case "scale": dic[idx].scale = float.Parse(_row[i]) * 0.01f; break;
                 case "color": dic[idx].color = StrToColor(_row[i].Replace("#", "")); break;                
             }
         }
