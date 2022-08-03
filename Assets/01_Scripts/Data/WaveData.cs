@@ -10,10 +10,17 @@ public class WaveDataItem
     public int[] enemys;
     public int count;
     public int[] position_range;
+	public string position_type;
 }
 
 public class WaveData : DataBase
 {
+	public const string TYPE_BOX = "box";
+	public const string TYPE_CIRCLE = "circle";
+	public const string TYPE_PREFAB = "prefab";
+	public const string TYPE_VERTICAL = "vertical";
+	public const string TYPE_HORIZON = "horizon";
+
     public List<WaveDataItem> list;
 
     public override void Init()
@@ -86,6 +93,7 @@ public class WaveData : DataBase
                             list[i].position_range[j] = int.Parse(values[j]); 
                     }
                 break;
+				case "position_type": list[i].position_type = _row[i]; break;
             }
         }
     }

@@ -67,16 +67,34 @@ public partial class Stage
             {
                 trycnt++;
                 vec = Vector3.one;
-                switch (UnityEngine.Random.Range(0, 4)) 
-                {
-                    case 0: vec.x *= -1; break;
-                    case 1: vec.y *= -1; break;
-                    case 2: vec.x *= -1; vec.y *= -1;break;
-                }
-                vec.x = player.rt.localPosition.x + (UnityEngine.Random.Range(tmpWave.position_range[0], tmpWave.position_range[1]) * vec.x);
-                vec.y = player.rt.localPosition.y + (UnityEngine.Random.Range(tmpWave.position_range[0], tmpWave.position_range[1]) * vec.y);
-                vec.z = 0;
-                tmpEnemy.rt.localPosition = vec;
+				switch(tmpWave.position_type)
+				{
+					case WaveData.TYPE_CIRCLE:
+					
+					break;
+					default:
+						switch (UnityEngine.Random.Range(0, 4)) 
+						{
+							case 0: vec.x *= -1; break;
+							case 1: vec.y *= -1; break;
+							case 2: vec.x *= -1; vec.y *= -1;break;
+						}
+						vec.x = player.rt.localPosition.x + (UnityEngine.Random.Range(tmpWave.position_range[0], tmpWave.position_range[1]) * vec.x);
+						vec.y = player.rt.localPosition.y + (UnityEngine.Random.Range(tmpWave.position_range[0], tmpWave.position_range[1]) * vec.y);
+						vec.z = 0;
+						switch (UnityEngine.Random.Range(0, 2)) 
+						{
+							case 0:
+								vec.x = player.rt.localPosition.x + (UnityEngine.Random.Range(-tmpWave.position_range[1], tmpWave.position_range[1]));
+							break;
+							case 1:
+								vec.y = player.rt.localPosition.y + (UnityEngine.Random.Range(-tmpWave.position_range[1], tmpWave.position_range[1]));
+							break;
+						}
+						
+						tmpEnemy.rt.localPosition = vec;
+					break;
+				}
             }
         }
         
