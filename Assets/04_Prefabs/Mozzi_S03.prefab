@@ -64,6 +64,7 @@ MonoBehaviour:
   rtRun: {fileID: 1380414360531297136}
   goRun: {fileID: 5824856370257897412}
   img: {fileID: 8126714401693757868}
+  ani: {fileID: 531292046139799870}
 --- !u!58 &812212977810414841
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -239,3 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &531292046139799870 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5854631145863335298, guid: e80429421a1109c44a544c5949f6dbce,
+    type: 3}
+  m_PrefabInstance: {fileID: 6224066284300563644}
+  m_PrefabAsset: {fileID: 0}
