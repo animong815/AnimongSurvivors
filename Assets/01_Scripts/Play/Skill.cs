@@ -89,7 +89,7 @@ public class Skill : ObjectBase
                         case ObjectBase.TYPE.Enemy:
                             //PlayManager.ins.stage.ReturnEnemy(hitObj.enemy);
                             if(hashAttackEnemy.Contains(hitObj.enemy)) break; //이미 공격한 적은 공격하지 않음
-                            hitObj.enemy.Damage(data.value[SkillData.attack]);
+                            hitObj.enemy.Damage(data);
                             hashAttackEnemy.Add(hitObj.enemy);
                             is_collide = true;
                         break;          

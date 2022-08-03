@@ -11,6 +11,15 @@ public class SkillDataItem
     public Dictionary<string, int> value;
     public Dictionary<string, int[]> values;
     public float activeTime;
+
+	public int GetValue(string _key)
+	{
+		return value.ContainsKey(_key) == false ? 0 : value[_key];
+	}
+	public float GetValueTime(string _key)
+	{
+		return value.ContainsKey(_key) == false ? 0 : (float)value[_key] * 0.001f;
+	}
 }
 
 public class SkillData : DataBase
@@ -34,6 +43,11 @@ public class SkillData : DataBase
     public const string stamina_use = "stamina_use";
     public const string stamina_add = "stamina_add";
     public const string groggy_value = "groggy_value";
+	public const string groggy_speed = "groggy_speed";
+
+	public const string back_speed = "back_speed";
+	public const string back_time = "back_time";
+	public const string stun_time = "stun_time";
 
     private List<int> listIdx;
     private List<int> listLevel;

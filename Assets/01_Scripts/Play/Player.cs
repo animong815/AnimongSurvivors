@@ -105,7 +105,12 @@ public partial class Player : ObjectBase
 		}
 		else
 		{	//걷는 상태 스테미나 증가
-			speed = data.value[SkillData.move_speed];
+			if(groggy != 0 && groggy > stamina)
+			{	//그로기 상태 이동 속도
+				speed = data.value[SkillData.groggy_speed];
+			}
+			else speed = data.value[SkillData.move_speed];
+
 			stamina += (float)data.value[SkillData.stamina_add] * (Time.time - beforeTime);
 			if(stamina > data.value[SkillData.stamina_max])
 				stamina = data.value[SkillData.stamina_max];

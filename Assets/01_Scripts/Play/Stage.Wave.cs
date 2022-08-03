@@ -12,7 +12,7 @@ public partial class Stage
     private List<WaveDataItem> listWave;
     private WaveDataItem tmpWave;
     private int trycnt = 0;
-
+	private float timeGap;
     public void StartWave()
     {
         listWave = new List<WaveDataItem>();
@@ -20,6 +20,7 @@ public partial class Stage
         fStart = Time.time;
         fSec = 0f;
         nextTime = 0f;
+		timeGap = 0f;
     }
 
     public void UpdateWave()
@@ -40,11 +41,18 @@ public partial class Stage
                 listWave.Add(PlayManager.ins.data.wave.list[i]);
             }
         }
+		//Debug.Log("listWave.Count:" + listWave.Count);
+		if(listWave.Count < 1)
+		{ 
+			nextTime = Time.time + timeGap;
+			return;
+		}
         tmpWave = listWave[UnityEngine.Random.Range(0, listWave.Count)];
 
         CreateWaveEnemy();
 
-        nextTime = Time.time + tmpWave.createTime;
+		timeGap = tmpWave.createTime;
+        nextTime = Time.time + timeGap;
         //Debug.Log("CreateEnemy : " + tmpWave.id);
         //Debug.Log("NextWaveTime : " + nextTime + "/" + Time.time);
     }

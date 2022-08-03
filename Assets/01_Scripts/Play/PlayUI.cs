@@ -140,6 +140,7 @@ public class PlayUI : MonoBehaviour
 			LeanTween.moveLocalY(PlayManager.ins.stage.go, 0f, 1f).setOnComplete(()=> 
 			{
 				PlayManager.ins.is_play = true;
+				PlayManager.ins.stage.StartStage();
 				PlayManager.ins.player.goIdle.SetActive(true);
 				PlayManager.ins.player.goRun.SetActive(false);
 			}).setOnUpdate((float f)=>
@@ -148,7 +149,7 @@ public class PlayUI : MonoBehaviour
 			});//.setEaseOutQuad();
 			//LeanTween.moveLocalY(rtBgTile.gameObject, -100f, 1f);//.setEaseOutQuad();
 			UpdateDistance(0);
-			PlayManager.ins.stage.StartStage();
+
 
 			return;
 		}
@@ -295,12 +296,14 @@ public class PlayUI : MonoBehaviour
 				vec3 = Vector3.one;
 				vec3.x = -1;
 				PlayManager.ins.player.tfRun.localScale = vec3;
+				PlayManager.ins.player.is_right = false;
 			}
 		}
 		else
 		{
 			if (PlayManager.ins.player.tfRun.localScale.x < 0)
 				PlayManager.ins.player.tfRun.localScale = Vector3.one;
+				PlayManager.ins.player.is_right = true;
 		}
 
 		//Debug.Log(rtDrag.localPosition.x);

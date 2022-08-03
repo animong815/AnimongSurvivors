@@ -10,6 +10,9 @@ public class Enemy : ObjectBase
     public RectTransform rtRun;
     public GameObject goRun;
     public UnityEngine.UI.Image img;
+	public Animator ani;
+
+
     private Vector3 vec;
     private Vector3 vecBack;
     private bool is_right_back = true;
@@ -23,6 +26,12 @@ public class Enemy : ObjectBase
     private float lifeTime = 0f;
     private const string CHECK_NAME_PLAYER = "Player";
     private const string CHECK_NAME_BG = "Bg";
+
+	private float time_die;
+	private float time_damage;
+	private float time_stun;
+	private SkillDataItem skill;
+	private Vector2 vecDir;
 
     [HideInInspector]
     public EnemyDataItem data;
@@ -42,35 +51,122 @@ public class Enemy : ObjectBase
 
     public void SetData(EnemyDataItem _data)
     {
+		vecDir = Vector2.zero;
         data = _data;
         speed = data.speed;
         hp = data.hp;
         lifeTime = (_data.life_time < 0) ? -1f : Time.time + _data.life_time;
-        if(img != null) img.color = _data.color;
+		InitMove();
+		img.color = Color.white;
+        if(img != null)
+        {
+			img.color = _data.color;             
+        }
     }
     
-    public void Damage(int _attack)
+    public void Damage(SkillDataItem _data)
     {
-        hp -= _attack;
+		if(hp <= 0) return;
+		skill = _data;
+        hp -= skill.value[SkillData.attack];
+
+		time_stun = 0f;
+		time_damage = 0f;
+
+		time_damage = Time.time + skill.GetValueTime(SkillData.back_time); 
+		if(ani != null)
+		{
+			ani.Play("damage");
+			if(Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length > time_damage)
+				time_damage = Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+			
+			if(hp <= 0)
+			{
+				time_die = -1;	
+			}
+			return;
+		}
+
         if(hp <= 0)
         {
             PlayManager.ins.stage.ReturnEnemy(this);
         }
+
     }
+	private void InitMove()
+	{
+		time_die = 0f;
+		time_damage = 0f;
+		time_stun = 0f;
+		skill = null;
+		ani.Play("run");
+	}
 
     public override void UpdateObject()
     {
         base.UpdateObject();
-        if (Vector3.Distance(rt.localPosition, PlayManager.ins.stage.player.rt.localPosition) > 1500f)
+        
+		if (Vector3.Distance(rt.localPosition, PlayManager.ins.stage.player.rt.localPosition) > 1500f)
         {   //플레이어와 일정 거리 이상 멀어지면 제거 
             PlayManager.ins.stage.ReturnEnemy(this);
             return;
         }
         if(PlayManager.ins.is_play == false) return;
+
+		//데미지 입고 있는 중
+		if(time_damage > 0)
+		{
+			if(skill.GetValue(SkillData.back_speed) != 0)
+			{
+				
+			}
+
+			if(Time.time >= time_damage)
+			{
+				time_damage = 0;
+				if(time_die == -1)
+				{
+					ani.Play("die");
+					time_die = Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+					return;
+				}
+
+				if(skill.GetValue(SkillData.stun_time) != 0)
+				{	//경직 시간
+					time_stun = Time.time + skill.GetValueTime(SkillData.stun_time);
+					return;
+				}
+				InitMove();
+			}			
+			return;
+		}
+
+		if(time_stun > 0)
+		{	//경직
+			if(Time.time > time_stun)
+			{
+				InitMove();
+			}
+			return;
+		}
+		//사라지는 중
+		if(time_die > 0) 
+		{
+			if(time_die < Time.time)
+			{
+				PlayManager.ins.stage.ReturnEnemy(this);
+			}
+			return;
+		}
+
         MoveDirect();
         SetSize();
         if(lifeTime != -1f && lifeTime < Time.time) PlayManager.ins.stage.ReturnEnemy(this);
     }
+	private void SetDirect()
+	{
+
+	}
     private void MoveDirect()
     {
         is_right_back = is_right;

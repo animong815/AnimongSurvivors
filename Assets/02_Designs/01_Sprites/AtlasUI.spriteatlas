@@ -155,6 +155,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ee30611ec4de25d45bb881dd3627a983, type: 3}
   - {fileID: 21300000, guid: 7a27012edead92a4c9296148c216f965, type: 3}
   - {fileID: 21300000, guid: 2496e42ee31040a43b0c5633079873e7, type: 3}
+  - {fileID: 21300000, guid: 59090e3edf095e74d84bb18f0ebedabc, type: 3}
   - {fileID: 21300000, guid: 15cdb44eb8d761a46b01f6a00543b23c, type: 3}
   - {fileID: 21300000, guid: ec0bd96e5e901ad499f1b415f6611e76, type: 3}
   - {fileID: 21300000, guid: c98b0c6e85339d342aa39806c812db05, type: 3}
@@ -164,9 +165,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7357ff9e74ba46943a6d03414a3eb493, type: 3}
   - {fileID: 21300000, guid: 5141fcbe29d6c554e9e70624cb79dade, type: 3}
   - {fileID: 21300000, guid: 3c6e81ee893816d409e5ee13498febfd, type: 3}
+  - {fileID: 21300000, guid: c50848ee6e0d1674085137d1cf3b4181, type: 3}
   - {fileID: 21300000, guid: f0d91c0f44b51de46822b92e0c8e897c, type: 3}
   - {fileID: 21300000, guid: 1283982fc3f72224f8c3ab829fa52319, type: 3}
   - {fileID: 21300000, guid: bbdbca2fd16505942b0f4f3c9bfa0ae7, type: 3}
+  - {fileID: 21300000, guid: 495a373f493adbf45ae4f4de9f0864c1, type: 3}
   - {fileID: 21300000, guid: 269df46fb3614254e9742b31174c69df, type: 3}
   - {fileID: 21300000, guid: cb0eeb8fa608d99468faf822e2bc7513, type: 3}
   - {fileID: 21300000, guid: f5e668bfa412b5c49b078df2c525db3c, type: 3}
@@ -266,6 +269,7 @@ SpriteAtlas:
   - FlowerGarden_32x16_01
   - img_click_01
   - FlowerGarden_120x80_01
+  - Mozzi01_Damage_03
   - btn_orange_h80
   - ca_bear
   - Gomong_Idle_03
@@ -275,9 +279,11 @@ SpriteAtlas:
   - FlowerGarden_40x24_01
   - Mozzi01_Run_03
   - img_cloud_01
+  - Mozzi01_Damage_01
   - btn_shop
   - Grass_56x16_01
   - btn_ad
+  - Mozzi01_Damage_02
   - Mozzi01_Run_02
   - icon_coin_01
   - Bush_80x80_01
