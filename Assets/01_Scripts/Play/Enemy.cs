@@ -62,8 +62,14 @@ public class Enemy : ObjectBase
         {
 			img.color = _data.color;             
         }
+		
     }
     
+	public void OnStage()
+	{
+		SetDirectPlayer();
+	}
+
     public void Damage(SkillDataItem _data)
     {
 		if(hp <= 0) return;
@@ -74,12 +80,19 @@ public class Enemy : ObjectBase
 		time_damage = 0f;
 
 		time_damage = Time.time + skill.GetValueTime(SkillData.back_time); 
+
 		if(ani != null)
 		{
 			ani.Play("damage");
 			if(Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length > time_damage)
 				time_damage = Time.time + ani.GetCurrentAnimatorClipInfo(0)[0].clip.length;
 			
+			//뒤로 밀리는 중
+			if(skill.GetValue(SkillData.back_speed) != 0)
+				SetDirectPlayer(skill.GetValue(SkillData.back_speed));
+
+			//Debug.Log(skill.GetValue(SkillData.back_speed));
+
 			if(hp <= 0)
 			{
 				time_die = -1;	
@@ -117,8 +130,13 @@ public class Enemy : ObjectBase
 		if(time_damage > 0)
 		{
 			if(skill.GetValue(SkillData.back_speed) != 0)
-			{
-				
+			{	//뒤로 밀리는 중
+				vec = rt.localPosition;
+				vec.x -= vecDir.x;
+				vec.y -= vecDir.y;
+
+				rt.localPosition = vec;
+				//Debug.Log("AA" + vecDir);
 			}
 
 			if(Time.time >= time_damage)
@@ -163,31 +181,53 @@ public class Enemy : ObjectBase
         SetSize();
         if(lifeTime != -1f && lifeTime < Time.time) PlayManager.ins.stage.ReturnEnemy(this);
     }
-	private void SetDirect()
+	private void SetDirectPlayer(float _speed = 0f)
 	{
+        vec = rt.localPosition;
+		if(_speed == 0f) _speed = speed;
+		tran.LookAt(PlayManager.ins.stage.player.tran);
+		
+		if(tran.localPosition.x < PlayManager.ins.stage.player.tran.localPosition.x)
+		{
+			tran.Translate( tran.right * (_speed * Time.smoothDeltaTime * 0.02f * 1));
+			is_right = true;
+		}
+		else
+		{
+			tran.Translate( tran.right * (_speed * Time.smoothDeltaTime * 0.02f * -1));
+			is_right = false;
+		}
+		tran.localRotation = Quaternion.identity;
 
+		vecDir = vec - tran.localPosition;
+		rt.localPosition = vec;
 	}
     private void MoveDirect()
     {
         is_right_back = is_right;
-        //vecBack = 
-        vec = rt.localPosition;
 
+		if(data.direct_type == "user") SetDirectPlayer();
+
+		vec = rt.localPosition;
+		vec.x += vecDir.x;
+		vec.y += vecDir.y;
+		
+		/*
         fnum = PlayManager.ins.stage.player.rt.localPosition.x - rt.localPosition.x;
-
         if (fnum > 0)
         {
             is_right = true;
-            vec.x += speed * Time.smoothDeltaTime;
+            //vec.x += speed * Time.smoothDeltaTime;
         }
         if (fnum < -speed * Time.smoothDeltaTime)
         {
             is_right = false;
-            vec.x -= speed * Time.smoothDeltaTime;
+            //vec.x -= speed * Time.smoothDeltaTime;
         }
-
-        if (PlayManager.ins.stage.player.rt.localPosition.y > rt.localPosition.y) vec.y += speed * Time.smoothDeltaTime;
-        else vec.y -= speed * Time.smoothDeltaTime;
+		*/
+        //if (PlayManager.ins.stage.player.rt.localPosition.y > rt.localPosition.y) vec.y += speed * Time.smoothDeltaTime;
+        //else vec.y -= speed * Time.smoothDeltaTime;
+		
 
         prevPos = 
         //vecBack =

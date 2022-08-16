@@ -93,6 +93,7 @@ public partial class Stage
 						}
 						
 						tmpEnemy.rt.localPosition = vec;
+						tmpEnemy.OnStage();
 					break;
 				}
             }
