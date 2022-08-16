@@ -12,11 +12,11 @@ public class BgObjectList : MonoBehaviour
     private BgObject tmp;
     private List<BgObject> listView;
     private List<BgObject> listDelete; 
-    
-    private const float TILE_SIZE = PlayUI.TILE_SIZE * 0.5f;
-    private const float TILE_SIZE_HALF = PlayUI.TILE_SIZE * 0.25f;
-    private const int VIEW_W = 20;
-    private const int VIEW_H = 16;
+    public const int TILE_OBJECT = 160;
+    private const float TILE_SIZE = TILE_OBJECT * 0.5f;
+    private const float TILE_SIZE_HALF = TILE_OBJECT * 0.25f;
+    private const int VIEW_W = 30;
+    private const int VIEW_H = 20;
     private int loopI;
     private Vector3 vec;
     private float CHECK_W;

@@ -40,7 +40,9 @@ public class PlayUI : MonoBehaviour
 
 	private float timeRetryWaitStart = 0f;
 	private float timeRetryWaitEnd = 0f;
-	public const int TILE_SIZE = 160;
+	
+	public const int TILE_SIZE_H = 80;
+	public const int TILE_SIZE_W = 112;
 	//
 	private int num;
 	[SerializeField]
@@ -325,10 +327,10 @@ public class PlayUI : MonoBehaviour
 		
 		vecMove = vec3;
 		//배경 타일 반복 움직임
-		if (vec3.x > 0) vec3.x -= TILE_SIZE;
-		if (vec3.x < -TILE_SIZE) vec3.x += TILE_SIZE;
-		if (vec3.y > 0) vec3.y -= TILE_SIZE;
-		if (vec3.y < -TILE_SIZE) vec3.y += TILE_SIZE;
+		if (vec3.x > 0) vec3.x -= TILE_SIZE_W;
+		if (vec3.x < -TILE_SIZE_W) vec3.x += TILE_SIZE_W;
+		if (vec3.y > 0) vec3.y -= TILE_SIZE_H;
+		if (vec3.y < -TILE_SIZE_H) vec3.y += TILE_SIZE_H;
 
 		rtBgTile.localPosition = vec3;
 		if(vecMove.x != vec3.x || vecMove.y != vec3.y)
