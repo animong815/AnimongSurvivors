@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 3787929219114506250}
   - component: {fileID: 3787929219114506249}
   m_Layer: 7
-  m_Name: Brush_80x40_01_1
+  m_Name: Brush_80x40_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cde222b9b59560344b50c83371800e35, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 538ff828d9ab967408e3386b2852551e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3156,7 +3156,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 120, y: 80}
+  m_SizeDelta: {x: 80, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3787929220349099171
 CanvasRenderer:
