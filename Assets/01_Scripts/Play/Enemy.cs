@@ -253,30 +253,15 @@ public class Enemy : ObjectBase
                         is_collide = true;
                         break;
                         case ObjectBase.TYPE.Enemy:
-                        /*
-                        is_collide = true;   
-                        //몬스터와 충돌한 경우 몬서의 뒤로 이동
-                        if(hitObj.enemy.rt.localPosition.x < rt.localPosition.x)
-                        {
-                            vec = rt.localPosition;
-                            vec.x = hitObj.enemy.rt.localPosition.x;
-                            vec.x += hitObj.enemy.col.radius + col.radius;
-                            rt.localPosition = vec;
-                        }
-                        else
-                        {
-                            vec = rt.localPosition;
-                            vec.x = hitObj.enemy.rt.localPosition.x;
-                            vec.x -= hitObj.enemy.col.radius + col.radius;
-                            rt.localPosition = vec;
-                        }
-                        break;           
-                        */
+						is_collide = false;
+                        if(data.hit_enemy == false) break;
+						CheckBgObject(hitObj);
+						break;
                         case ObjectBase.TYPE.BgOver:
                         //몬스터 배경 오브젝트와 충돌한 경우
                         is_collide = false;
-                        CheckBgObject(hitObj);
-                        
+						if(data.hit_bg == false) break;
+                        CheckBgObject(hitObj);                        
                         break;          
                         default: break;
                     }

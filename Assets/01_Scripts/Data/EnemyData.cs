@@ -15,6 +15,9 @@ public class EnemyDataItem
     public string touch_type;
     public float scale;
     public Color color;
+
+	public bool hit_bg;
+	public bool hit_enemy;
 }
 
 public class EnemyData : DataBase
@@ -78,7 +81,9 @@ public class EnemyData : DataBase
                 case "direct_type": dic[idx].direct_type = _row[i]; break;
                 case "touch_type": dic[idx].touch_type = _row[i]; break;
                 case "scale": dic[idx].scale = float.Parse(_row[i]) * 0.01f; break;
-                case "color": dic[idx].color = StrToColor(_row[i].Replace("#", "")); break;                
+                case "color": dic[idx].color = StrToColor(_row[i].Replace("#", "")); break;    
+				case "hit_bg": dic[idx].hit_bg = _row[i]== "true"; break;
+				case "hit_enemy": dic[idx].hit_enemy = _row[i]== "true"; break;
             }
         }
     }
