@@ -36,6 +36,10 @@ public partial class Player : ObjectBase
 		prevPos = vec;
 		type = TYPE.Player;
 		is_right = true;
+		tfIdle.localScale =
+		tfRun.localScale = Vector3.one;
+
+		
 	}
 	public void SetUseStamina(bool _use)
 	{

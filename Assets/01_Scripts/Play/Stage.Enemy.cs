@@ -4,6 +4,7 @@ using UnityEngine;
 
 public partial class Stage
 {
+	[HideInInspector]
     public List<Enemy> enemies;
 
     private Dictionary<string, List<Enemy>> listEnemy;
@@ -20,7 +21,8 @@ public partial class Stage
         //createTime = Time.time;
         listEnemy = new Dictionary<string, List<Enemy>>();
         keyEnemy = new Dictionary<string, int>();
-        
+        enemies = new List<Enemy>(rtEnemy.GetComponentsInChildren<Enemy>());
+
         for (int i = 0; i < enemies.Count; i++)
         {
             listEnemy.Add(enemies[i].go.name, new List<Enemy>());   
