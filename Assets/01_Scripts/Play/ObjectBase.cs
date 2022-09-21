@@ -103,5 +103,8 @@ public class ObjectBase : MonoBehaviour
 		}
 
 	}
-
+	protected void CheckBgObjectBox(HitObject _hitObj)
+	{
+		
+	}
 }

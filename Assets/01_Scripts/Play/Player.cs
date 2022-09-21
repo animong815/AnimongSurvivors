@@ -134,7 +134,9 @@ public partial class Player : ObjectBase
     {
         vec = rt.position;
         vec.y += col.offset.y * PlayManager.ins.canvasSize;        
-        hit = Physics2D.OverlapCircleAll(vec, col.radius * PlayManager.ins.canvasSize);
+		hit = Physics2D.OverlapCircleAll(vec, col.radius * PlayManager.ins.canvasSize);
+		//vec.y += col_box.offset.y * PlayManager.ins.canvasSize;
+        //hit = Physics2D.OverlapBoxAll(vec, col_box.size, 0f);
 
 		if(hit == null) return;
 

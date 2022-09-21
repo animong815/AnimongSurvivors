@@ -14,6 +14,12 @@ public class PlayUI : MonoBehaviour
 	public Text txtTime;
 	public Image imgStamina;
 
+	public Slider sliderExp;
+	public Text txtLv;
+
+	public GameObject objHp;
+	public Image imgHp;
+
 	public GameObject objIngame;
 	public GameObject objMain;
 
