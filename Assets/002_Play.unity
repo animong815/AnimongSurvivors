@@ -5386,6 +5386,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506248161}
   m_CullTransparentMesh: 1
+--- !u!95 &510404096 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4904186376392912315, guid: bb2ab87024c63be4e915a732f3f91040,
+    type: 3}
+  m_PrefabInstance: {fileID: 1208502829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &514858057
 GameObject:
   m_ObjectHideFlags: 0
@@ -11790,6 +11796,7 @@ MonoBehaviour:
   txtTopDistance: {fileID: 9979098}
   txtTime: {fileID: 1208502833}
   imgStamina: {fileID: 1208502832}
+  aniIcon: {fileID: 510404096}
   sliderExp: {fileID: 2138060216}
   txtLv: {fileID: 2138961721}
   objHp: {fileID: 1892482678}
@@ -15617,7 +15624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 65.70001, y: 66.099976}
+  m_AnchoredPosition: {x: 65.69995, y: 66.099976}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436553128

@@ -13,7 +13,7 @@ public class PlayUI : MonoBehaviour
 	
 	public Text txtTime;
 	public Image imgStamina;
-
+	public Animator aniIcon;
 	public Slider sliderExp;
 	public Text txtLv;
 

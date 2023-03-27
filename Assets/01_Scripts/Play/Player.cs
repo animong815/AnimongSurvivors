@@ -23,6 +23,7 @@ public partial class Player : ObjectBase
 	public float speed = 70f;
 	private float stamina = 0f;
 	private float groggy = 0f;
+	private bool isGroggy = false;
 	private float beforeTime = 0f;
 	private Collider2D[] hit;
 	private HitObject hitObj;
@@ -67,6 +68,7 @@ public partial class Player : ObjectBase
 		speed = data.value[SkillData.move_speed];
 		stamina = data.value[SkillData.stamina_max];		
 		groggy = 0;
+		isGroggy = false;
 		beforeTime = Time.time;
 
 		SetSkillData();
@@ -94,6 +96,15 @@ public partial class Player : ObjectBase
 			PlayManager.ins.ui.imgStamina.color = Color.red;
 			if(stamina >= groggy) groggy = 0;
 			useStamina = false;
+			if(isGroggy == false)
+				PlayManager.ins.ui.aniIcon.Play("groggy");
+			isGroggy = true;
+		}
+		else
+		{
+			if(isGroggy == true)
+				PlayManager.ins.ui.aniIcon.Play("run");
+			isGroggy = false;
 		}
 
 		if(useStamina)
@@ -111,10 +122,12 @@ public partial class Player : ObjectBase
 		{	//걷는 상태 스테미나 증가
 			if(groggy != 0 && groggy > stamina)
 			{	//그로기 상태 이동 속도
-				speed = data.value[SkillData.groggy_speed];
+				speed = data.value[SkillData.groggy_speed];				
 			}
-			else speed = data.value[SkillData.move_speed];
-
+			else
+			{
+				speed = data.value[SkillData.move_speed];
+			}
 			stamina += (float)data.value[SkillData.stamina_add] * (Time.time - beforeTime);
 			if(stamina > data.value[SkillData.stamina_max])
 				stamina = data.value[SkillData.stamina_max];
