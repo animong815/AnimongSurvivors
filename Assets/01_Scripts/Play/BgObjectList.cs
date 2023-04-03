@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class BgObjectList : MonoBehaviour
 {
     public RectTransform rt;
     
     public BgObject[] prefabObject;
-
-    private Dictionary<int, List<BgObject>> dicObject;
+    public List<BgObject> prefabObjectTree;
+    public List<BgObject> prefabObjectGrass;
+	public List<BgObject> prefabObjectFlower;
+	public List<BgObject> prefabObjectBrush;
+    
+	private Dictionary<int, List<BgObject>> dicObject;
     private BgObject tmp;
     private List<BgObject> listView;
     private List<BgObject> listDelete; 
@@ -102,7 +107,7 @@ public class BgObjectList : MonoBehaviour
         }
         listDelete.Clear();
     }
-
+	
     public void CheckBgObject()
     {
         //가로 10, 세로 6
@@ -187,4 +192,44 @@ public class BgObjectList : MonoBehaviour
         tmp = GameObject.Instantiate<BgObject>(prefabObject[_idx - 1]);        
         return tmp;
     }
+
+	public void SetObjectList()
+	{
+		if(prefabObjectBrush == null)
+			prefabObjectBrush = new List<BgObject>();
+		prefabObjectBrush.Clear();
+		if(prefabObjectTree == null)
+			prefabObjectTree = new List<BgObject>();
+		prefabObjectTree.Clear();
+		if(prefabObjectFlower == null)
+			prefabObjectFlower = new List<BgObject>();
+		prefabObjectFlower.Clear();
+		if(prefabObjectGrass == null)
+			prefabObjectGrass = new List<BgObject>();
+		prefabObjectGrass.Clear();
+
+		Debug.Log("SetObejctList");
+		BgObject[] list = rt.GetComponentsInChildren<BgObject>(true);
+		for(int i =0; i< list.Length; i++)
+		{
+			list[i].name = list[i].img.sprite.name;
+			if(list[i].name.IndexOf("Bush") != -1)
+				prefabObjectBrush.Add(list[i]);
+			if(list[i].name.IndexOf("Tree") != -1)
+				prefabObjectTree.Add(list[i]);
+			if(list[i].name.IndexOf("Grass") != -1)
+				prefabObjectGrass.Add(list[i]);
+			if(list[i].name.IndexOf("Flower") != -1)
+				prefabObjectFlower.Add(list[i]);
+		}
+		prefabObjectBrush.Sort(ListSort);
+		prefabObjectTree.Sort(ListSort);
+		prefabObjectGrass.Sort(ListSort);
+		prefabObjectFlower.Sort(ListSort);
+
+	}
+	private int ListSort(BgObject _a, BgObject _b)
+	{
+		return _a.name.CompareTo(_b.name);
+	}
 }
