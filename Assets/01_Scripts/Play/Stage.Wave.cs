@@ -26,8 +26,9 @@ public partial class Stage
     public void UpdateWave()
     {
 		//enemy 만들지 않음
-		return;
-        //Debug.Log(DateTime.Now - startTime);
+		//return;
+        
+		//Debug.Log(DateTime.Now - startTime);
         fSec = Time.time - fStart;
         //Debug.Log(fSec);
         PlayManager.ins.ui.txtTime.text = (startTime.AddSeconds(fSec)).ToString("mm':'ss");

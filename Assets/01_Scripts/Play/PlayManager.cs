@@ -249,9 +249,9 @@ public class PlayManager : MonoBehaviour
 		ui.btnChar.obj.SetActive(false);
 		ui.btnRanking.obj.SetActive(false);
 
-		player.goRun.SetActive(false);
-		player.goIdle.SetActive(true);
-
+		//player.goRun.SetActive(false);
+		//player.goIdle.SetActive(true);
+		player.SetAni("Idle");
 		ui.InitRetryUI();
 	}
 

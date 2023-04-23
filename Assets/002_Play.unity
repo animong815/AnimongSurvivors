@@ -23928,6 +23928,7 @@ MonoBehaviour:
   user: {fileID: 0}
   wave: {fileID: 0}
   enemy: {fileID: 0}
+  stage: {fileID: 0}
 --- !u!4 &2126758033
 Transform:
   m_ObjectHideFlags: 0
@@ -24515,6 +24516,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621044646110497446, guid: 0d113e8a8cb7bf942a669b2c415e89e7,
+        type: 3}
+      propertyPath: idx
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4095552996128257760, guid: 0d113e8a8cb7bf942a669b2c415e89e7,
         type: 3}

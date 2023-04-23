@@ -140,17 +140,19 @@ public class PlayUI : MonoBehaviour
 			btnRetryNow.obj.SetActive(false);
 			objIngameScoreBox.SetActive(true);
 			PlayManager.ins.is_play = false;
-			PlayManager.ins.player.goIdle.SetActive(false);
-			PlayManager.ins.player.goRun.SetActive(true);
-			
+			//PlayManager.ins.player.goIdle.SetActive(false);
+			//PlayManager.ins.player.goRun.SetActive(true);
+			PlayManager.ins.player.SetAni("Run");
+
 			LeanTween.moveLocalY(PlayManager.ins.player.go, 0f, 1f);
 			LeanTween.moveLocalY(goBgTile, 0f, 1f);
 			LeanTween.moveLocalY(PlayManager.ins.stage.go, 0f, 1f).setOnComplete(()=> 
 			{
 				PlayManager.ins.is_play = true;
 				PlayManager.ins.stage.StartStage();
-				PlayManager.ins.player.goIdle.SetActive(true);
-				PlayManager.ins.player.goRun.SetActive(false);
+				PlayManager.ins.player.SetAni("Idle");
+				//PlayManager.ins.player.goIdle.SetActive(true);
+				//PlayManager.ins.player.goRun.SetActive(false);
 			}).setOnUpdate((float f)=>
 			{
 				PlayManager.ins.stage.SortStage();
@@ -207,23 +209,23 @@ public class PlayUI : MonoBehaviour
 		if(isKey)
 		{
 			MovePlayer();
-			if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
-			if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
-
+			//if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
+			//if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
+			PlayManager.ins.player.SetAni("Run");
 			if (dir == 1)
 			{
-				if (PlayManager.ins.player.tfRun.localScale.x > 0)
+				if (PlayManager.ins.player.tranAni.localScale.x > 0)
 				{
 					vec3 = Vector3.one;
 					vec3.x = -1;
-					PlayManager.ins.player.tfRun.localScale = vec3;
+					PlayManager.ins.player.tranAni.localScale = vec3;
 					PlayManager.ins.player.is_right = false;
 				}
 			}
 			if (dir == 2)
 			{
-				if (PlayManager.ins.player.tfRun.localScale.x < 0)
-					PlayManager.ins.player.tfRun.localScale = Vector3.one;
+				if (PlayManager.ins.player.tranAni.localScale.x < 0)
+					PlayManager.ins.player.tranAni.localScale = Vector3.one;
 				PlayManager.ins.player.is_right = true;
 			}
 			return;
@@ -233,12 +235,15 @@ public class PlayUI : MonoBehaviour
 		if (isPress == false)
 		{   //컨트롤러 화면에 안보이도록
 			if (goControl.activeSelf) goControl.SetActive(false);
+			PlayManager.ins.player.SetAni("Idle");
+			/*
 			if (PlayManager.ins.player.goIdle.activeSelf == false)
 			{
 				PlayManager.ins.player.goIdle.SetActive(true);
 				PlayManager.ins.player.tfIdle.localScale = PlayManager.ins.player.tfRun.localScale;
 			}
 			if (PlayManager.ins.player.goRun.activeSelf == true) PlayManager.ins.player.goRun.SetActive(false);
+			*/
 			return;
 		}
 	
@@ -260,12 +265,15 @@ public class PlayUI : MonoBehaviour
 #else
 		else
 		{
+			/*
 			if (goControl.activeSelf) goControl.SetActive(false);
 			if (PlayManager.ins.player.goIdle.activeSelf == false)
 			{
 				PlayManager.ins.player.goIdle.SetActive(true);
 				PlayManager.ins.player.tfIdle.localScale = PlayManager.ins.player.tfRun.localScale;
 			}
+			*/
+			PlayManager.ins.player.ani.Play("Idle");
 			if (PlayManager.ins.player.goRun.activeSelf == true) PlayManager.ins.player.goRun.SetActive(false);
 			return;
 		}
@@ -294,23 +302,24 @@ public class PlayUI : MonoBehaviour
 		{
 			PlayManager.ins.player.SetUseStamina(false);
 		}
-		if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
-		if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
+		//if (PlayManager.ins.player.goIdle.activeSelf == true) PlayManager.ins.player.goIdle.SetActive(false);
+		//if (PlayManager.ins.player.goRun.activeSelf == false) PlayManager.ins.player.goRun.SetActive(true);
+		PlayManager.ins.player.SetAni("Run");
 
 		if (rtDrag.localPosition.x < 0)
 		{
-			if (PlayManager.ins.player.tfRun.localScale.x > 0)
+			if (PlayManager.ins.player.tranAni.localScale.x > 0)
 			{
 				vec3 = Vector3.one;
 				vec3.x = -1;
-				PlayManager.ins.player.tfRun.localScale = vec3;
+				PlayManager.ins.player.tranAni.localScale = vec3;
 				PlayManager.ins.player.is_right = false;
 			}
 		}
 		else
 		{
-			if (PlayManager.ins.player.tfRun.localScale.x < 0)
-				PlayManager.ins.player.tfRun.localScale = Vector3.one;
+			if (PlayManager.ins.player.tranAni.localScale.x < 0)
+				PlayManager.ins.player.tranAni.localScale = Vector3.one;
 				PlayManager.ins.player.is_right = true;
 		}
 

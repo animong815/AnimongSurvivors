@@ -8,12 +8,17 @@ public partial class Player : ObjectBase
 	public int level;
 
 	private UserDataItem data;
-
+	[SerializeField] private Animator ani;
+	public Transform tranAni;
+	
+	[SerializeField] private GameObject[] goChar;
+	
+	/*
 	public GameObject goIdle;
 	public Transform tfIdle;
 	public GameObject goRun;
 	public Transform tfRun;
-
+	*/
 	private Vector3 vec;
 
 	private Collider[] colHit;
@@ -36,11 +41,19 @@ public partial class Player : ObjectBase
 		base.Init();
 		prevPos = vec;
 		type = TYPE.Player;
-		is_right = true;
-		tfIdle.localScale =
-		tfRun.localScale = Vector3.one;
 
-		
+		for(int i =0; i<goChar.Length; i++)
+			goChar[i].SetActive(false);
+			
+		ani = goChar[idx-1].GetComponent<Animator>();
+		tranAni = goChar[idx-1].transform;
+		goChar[idx - 1].SetActive(true);
+
+		is_right = true;
+		tranAni.localScale = Vector3.one;
+
+		//tfIdle.localScale =
+		//tfRun.localScale = Vector3.one;
 	}
 	public void SetUseStamina(bool _use)
 	{
@@ -81,7 +94,15 @@ public partial class Player : ObjectBase
 		prevPos = rt.localPosition;		
 		HitCheck();
 	}
-
+	public void SetAni(string _value)
+	{
+		if(isGroggy)
+			ani.Play("Groggy");
+		else
+		{
+			ani.Play(_value);
+		}
+	}
     public override void UpdateObject()
     {
         base.UpdateObject();
