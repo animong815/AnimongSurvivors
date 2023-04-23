@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BgObject : ObjectBase
 {
     public int idx;
-    public Image img;
+    public int sub_idx;
+	public Image img;
 
 }

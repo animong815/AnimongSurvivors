@@ -40,6 +40,7 @@
      <Compile Include="Assets/01_Scripts/Data/DataManager.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Data/CloudPrefs/CloudDouble.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/AppleGameCenter/iOSCloudSaveWrapper.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Player.Skill.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/OurUtils/PlatformUtils.cs" />
      <Compile Include="Assets/01_Scripts/Data/SkillData.cs" />
      <Compile Include="Assets/01_Scripts/Utils/LeanTween/LeanTween.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets/01_Scripts/ADManager.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/SavedGame/ISavedGameClient.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/OurUtils/NearbyHelperObject.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Stage.Skill.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/Video/VideoCapabilities.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/BasicApi/DummyClient.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesPlatform.cs" />
@@ -103,6 +105,7 @@
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLocalUser.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/Platforms/Native/PInvoke/RealtimeManager.cs" />
      <Compile Include="Assets/01_Scripts/Data/WaveData.cs" />
+     <Compile Include="Assets/01_Scripts/Play/Skill.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Internal/Interfaces/ICloudStorageProvider.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/DummyProvider/DummyStorageWrapper.cs" />
      <Compile Include="Assets/Extensions/CloudOnce/Providers/AppleGameCenter/iOSCloudProvider.cs" />
@@ -218,9 +221,7 @@
      <Compile Include="Assets/01_Scripts/SceneManager.cs" />
      <Compile Include="Assets/01_Scripts/Play/Stage.Enemy.cs" />
      <Compile Include="Assets/Extensions/GooglePlayGames/ISocialPlatform/PlayGamesLeaderboard.cs" />
-     <Compile Include="Assets/01_Scripts/Play/Skill.cs" />
-     <Compile Include="Assets/01_Scripts/Play/Stage.Skill.cs" />
-     <Compile Include="Assets/01_Scripts/Play/Player.Skill.cs" />
+     <Compile Include="Assets/01_Scripts/Data/StageData.cs" />
      <None Include="Assets/GoogleMobileAds/GoogleMobileAds_version-7.0.0_manifest.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/LeaderboardsPropertyTemplate.cs.txt" />
      <None Include="Assets/Extensions/CloudOnce/Internal/Data/Templates/CloudVariablesPropertyTemplate.cs.txt" />

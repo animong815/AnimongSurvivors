@@ -321,23 +321,23 @@ SpriteAtlas:
   - btn_back
   - Mozzi_M_Damage_Type02
   - Mozzi_S06_Damage_01
-  - Tree_240x320_01
+  - Tree_6_240x320_01
   - Mozzi_M01_Run_01
   - Mozzi_M05_Run_05
   - Mozzi_M01_Damage_02
   - Gomong_Basic
-  - Bush_80x40_05
+  - Bush_5_80x40_05
   - bg_deco
-  - Tree_200x320_04
+  - Tree_4_200x320_04
   - btn_rp_setting
   - Mozzi_S04_Run_04
   - btn_blue_h80
   - Mozzi01_Run_01
-  - Tree_200x320_02
+  - Tree_2_200x320_02
   - Mozzi_S03_Run_04
   - Tod_Run_02
   - Mozzi_M02_Run_04
-  - FlowerGarden_24x24_01
+  - FlowerGarden_2_24x24_01
   - Mozzi_S06_Run_03
   - Gomong_board_01
   - Mozzi_M_Shadow_05
@@ -357,11 +357,11 @@ SpriteAtlas:
   - Mozzi_S01_Run_06
   - Mozzi_M04_Run_04
   - Mozzi_M03_Run_01
-  - FlowerGarden_40x24_02
+  - FlowerGarden_5_40x24_02
   - Mozzi01_Run_05
   - Mozzi_M03_Run_02
-  - Bush_80x40_02
-  - Bush_160x120_04
+  - Bush_2_80x40_02
+  - Bush_13_160x120_04
   - Mozzi_M02_Run_03
   - Tod_Groggy_01
   - Mozzi_S02_Run_03
@@ -380,14 +380,14 @@ SpriteAtlas:
   - Gomong_Jump_03
   - Mozzi_M05_Run_06
   - Mozzi_S05_Run_02
-  - Tree_200x320_05
+  - Tree_5_200x320_05
   - Mozzi_M02_Damage_02
   - btn_close
   - Mozzi_M_Shadow_03
   - InGame_Booster_Gauge_Img
   - btn_ranking
-  - Bush_80x80_04
-  - FlowerGarden_24x16_01
+  - Bush_9_80x80_04
+  - FlowerGarden_1_24x16_01
   - Mozzi_S01_Run_03
   - Mozzi_S_Damage_Type01
   - btn_replay
@@ -396,7 +396,7 @@ SpriteAtlas:
   - InGame_CA_Run_05
   - btn_play
   - bg_h48
-  - Bush_80x80_02
+  - Bush_7_80x80_02
   - Gomong_Idle_02
   - Tod_Groggy_02
   - Mozzi01_Run_04
@@ -420,15 +420,15 @@ SpriteAtlas:
   - Mozzi_M02_Run_01
   - Mozzi_S06_Run_01
   - Gomong_Run_01
-  - Tree_200x320_03
+  - Tree_3_200x320_03
   - Mozzi_S04_Run_06
   - Mozzi_S05_Damage_01
   - Mozzi_S01_Run_02
-  - Bush_80x40_04
+  - Bush_4_80x40_04
   - InGame_CA_Run_02
   - Mozzi_S06_Run_05
   - Tod_Run_03
-  - FlowerGarden_80x80_01
+  - FlowerGarden_6_80x80_01
   - btn_share
   - Gomong_Idle_01
   - Gomong_Groggy_01
@@ -436,12 +436,12 @@ SpriteAtlas:
   - Gomong_Idle_02
   - img_balloon
   - InGame_GoldBox_BG
-  - Grass_80x32_01
+  - Grass_4_80x32_01
   - Mozzi_M_Damage_Type03
   - Tod_board_02
   - btn_ca
   - icon_rank
-  - Bush_80x40_03
+  - Bush_3_80x40_03
   - Mozzi_M01_Run_05
   - Gomong_Run_03
   - Gomong_Run_02
@@ -455,14 +455,14 @@ SpriteAtlas:
   - img_newrecord
   - bg_shop_ca
   - Mozzi_S02_Run_01
-  - Bush_160x120_01
+  - Bush_10_160x120_01
   - Mozzi_S_Damage_Type03
-  - Bush_80x80_03
+  - Bush_8_80x80_03
   - Mozzi_M02_Run_02
   - Mozzi_M04_Run_03
   - btn_dis_h80
   - Mozzi_M01_Run_03
-  - Grass_80x48_01
+  - Grass_5_80x48_01
   - Mozzi_M01_Run_02
   - btn_open
   - img_cloud_03
@@ -480,7 +480,7 @@ SpriteAtlas:
   - Mozzi_M03_Run_03
   - Mozzi_S01_Damage_02
   - Tod_Jump_01
-  - Bush_160x120_03
+  - Bush_12_160x120_03
   - Mozzi_M05_Run_03
   - btn_start
   - btn_start_bg_01
@@ -493,14 +493,14 @@ SpriteAtlas:
   - img_cloud_04
   - btn_setting
   - Mozzi_S03_Run_06
-  - Bush_80x40_01
+  - Bush_1_80x40_01
   - Mozzi_S04_Run_05
   - img_cloud_02
   - Mozzi_M05_Run_04
   - Tod_Jump_04
   - InGame_TimeBox_BG
   - Mozzi_S06_Run_06
-  - Tree_200x320_01
+  - Tree_1_200x320_01
   - Mozzi_S02_Run_05
   - InGame_CA_Run_04
   - Mozzi_M_Shadow_02
@@ -519,28 +519,28 @@ SpriteAtlas:
   - img_title
   - Mozzi_M05_Run_01
   - Tod_Idle_01
-  - Grass_64x24_01
+  - Grass_3_64x24_01
   - Gomong_Run_04
   - Mozzi_S01_Damage_01
   - Mozzi_S02_Run_04
   - Mozzi_S04_Damage_02
   - Mozzi_M03_Run_05
   - Tod_Run_04
-  - FlowerGarden_32x16_01
+  - FlowerGarden_3_32x16_01
   - Tod_Jump_06_place
   - img_click_01
-  - FlowerGarden_120x80_01
+  - FlowerGarden_7_120x80_01
   - Mozzi_M_Damage_Type05
   - Mozzi_S05_Damage_02
   - Mozzi01_Damage_03
   - btn_orange_h80
   - ca_bear
   - Gomong_Idle_03
-  - Grass_40x16_01
+  - Grass_1_40x16_01
   - Tod_Basic
   - Mozzi_S05_Run_06
   - btn_rp_ranking
-  - FlowerGarden_40x24_01
+  - FlowerGarden_4_40x24_01
   - Mozzi_M01_Run_04
   - Mozzi01_Run_03
   - img_cloud_01
@@ -549,7 +549,7 @@ SpriteAtlas:
   - Mozzi_S04_Damage_01
   - btn_shop
   - InGame_HP_Gauge_BG
-  - Grass_56x16_01
+  - Grass_2_56x16_01
   - btn_ad
   - Mozzi01_Damage_02
   - bg_deco_02
@@ -557,12 +557,12 @@ SpriteAtlas:
   - icon_coin_01
   - Mozzi_S_Damage_Type04
   - Gomong_Shadow_02
-  - Bush_80x80_01
+  - Bush_6_80x80_01
   - Mozzi_M04_Damage_02
   - btn_revive
   - Mozzi_S05_Run_04
   - Mozzi_M03_Run_06
-  - Bush_160x120_02
+  - Bush_11_160x120_02
   m_RenderDataMap: {}
   m_Tag: AtlasUI
   m_IsVariant: 0

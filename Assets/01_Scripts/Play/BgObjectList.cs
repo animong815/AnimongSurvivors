@@ -7,13 +7,14 @@ public class BgObjectList : MonoBehaviour
 {
     public RectTransform rt;
     
-    public BgObject[] prefabObject;
+    public List<BgObject> prefabObject;
     public List<BgObject> prefabObjectTree;
     public List<BgObject> prefabObjectGrass;
 	public List<BgObject> prefabObjectFlower;
-	public List<BgObject> prefabObjectBrush;
+	public List<BgObject> prefabObjectBush;
     
 	private Dictionary<int, List<BgObject>> dicObject;
+	private Dictionary<string, List<BgObject>> dicSubObject;
     private BgObject tmp;
     private List<BgObject> listView;
     private List<BgObject> listDelete; 
@@ -33,11 +34,16 @@ public class BgObjectList : MonoBehaviour
         listView = new List<BgObject>();
         listDelete = new List<BgObject>();
         dicObject = new Dictionary<int, List<BgObject>>();
-        for(int i = 0; i<prefabObject.Length; i++)
+        for(int i = 0; i<prefabObject.Count; i++)
         {
             prefabObject[i].go.SetActive(false);
             dicObject.Add(prefabObject[i].idx, new List<BgObject>());     
         }
+		dicSubObject = new Dictionary<string, List<BgObject>>();
+		dicSubObject.Add("grass", prefabObjectGrass);
+		dicSubObject.Add("flower", prefabObjectFlower);
+		dicSubObject.Add("bush", prefabObjectBush);
+		dicSubObject.Add("tree", prefabObjectTree);
 
         CHECK_W = VIEW_W * 0.5F * TILE_SIZE;
         CHECK_H = VIEW_H * 0.5F * TILE_SIZE;
@@ -57,6 +63,8 @@ public class BgObjectList : MonoBehaviour
 
     private void CreateObject(int _startw, int _starth, int _maxw, int _maxh)
     {
+		if(PlayManager.ins.data.stage.CurrentStage == null)
+			return;
         //Debug.Log("CreateObject");
         //Debug.Log("CheckBgObject");
         int w, h;
@@ -73,15 +81,40 @@ public class BgObjectList : MonoBehaviour
     private void CreateBgObject(int _x, int _y)
     {
         //생성 확률
-        if(Random.Range(0,2) == 0) return;
-
-        tmp = GetObject(Random.Range(0, prefabObject.Length) + 1);
+		//if(Random.Range(0,2) == 0) return;
+     	//tmp = GetObject(Random.Range(0, prefabObject.Count) + 1);
+		
+		SetCreateBgObject();
+		if(tmp == null)
+			return;
         vec.x = ((_x - (VIEW_W)) * TILE_SIZE) + TILE_SIZE_HALF - vecPos.x;
         vec.y = ((_y - (VIEW_H)) * TILE_SIZE) + TILE_SIZE_HALF - vecPos.y;
         vec.z = 0f;
         tmp.rt.localPosition = vec;
     }
-
+	private void SetCreateBgObject()
+	{
+		tmp = null;
+		int rate = 0;
+		int ran = Random.Range(1, 101);
+		SetTmpObject("bush", ref rate, ran);
+		if(tmp != null) return;
+		SetTmpObject("grass", ref rate, ran);
+		if(tmp != null) return;
+		SetTmpObject("flower", ref rate, ran);
+		if(tmp != null) return;
+		SetTmpObject("tree", ref rate, ran);
+		if(tmp != null) return;
+	}
+	private void SetTmpObject(string _value, ref int _rate, int ran)
+	{
+		_rate += PlayManager.ins.data.stage.CurrentStage.dicCase[_value].show;
+        if(ran < _rate)
+		{
+			ran = Random.Range(0, PlayManager.ins.data.stage.CurrentStage.dicCase[_value].case_type.Length);
+			tmp = GetObject(dicSubObject[_value][PlayManager.ins.data.stage.CurrentStage.dicCase[_value].case_type[ran] - 1].idx);
+		}
+	}
     private void DeleteObject(bool is_all = false)
     {
         //Debug.Log("DeleteObject");
@@ -195,9 +228,9 @@ public class BgObjectList : MonoBehaviour
 
 	public void SetObjectList()
 	{
-		if(prefabObjectBrush == null)
-			prefabObjectBrush = new List<BgObject>();
-		prefabObjectBrush.Clear();
+		if(prefabObjectBush == null)
+			prefabObjectBush = new List<BgObject>();
+		prefabObjectBush.Clear();
 		if(prefabObjectTree == null)
 			prefabObjectTree = new List<BgObject>();
 		prefabObjectTree.Clear();
@@ -208,28 +241,60 @@ public class BgObjectList : MonoBehaviour
 			prefabObjectGrass = new List<BgObject>();
 		prefabObjectGrass.Clear();
 
+		if(prefabObject == null)
+			prefabObject = new List<BgObject>();
+		prefabObject.Clear();
+
 		Debug.Log("SetObejctList");
-		BgObject[] list = rt.GetComponentsInChildren<BgObject>(true);
-		for(int i =0; i< list.Length; i++)
+		BgObject[] arr = rt.GetComponentsInChildren<BgObject>(true);		
+		prefabObject = new List<BgObject>(arr);
+		prefabObject.Sort(ListSort);
+
+		for(int i =0; i< prefabObject.Count; i++)
 		{
-			list[i].name = list[i].img.sprite.name;
-			if(list[i].name.IndexOf("Bush") != -1)
-				prefabObjectBrush.Add(list[i]);
-			if(list[i].name.IndexOf("Tree") != -1)
-				prefabObjectTree.Add(list[i]);
-			if(list[i].name.IndexOf("Grass") != -1)
-				prefabObjectGrass.Add(list[i]);
-			if(list[i].name.IndexOf("Flower") != -1)
-				prefabObjectFlower.Add(list[i]);
+			prefabObject[i].name = prefabObject[i].img.sprite.name;
+			prefabObject[i].idx = i + 1;
+			prefabObject[i].rt.SetAsLastSibling();
+			if(prefabObject[i].name.IndexOf("Bush") != -1)
+			{	
+				prefabObjectBush.Add(prefabObject[i]);
+				prefabObject[i].sub_idx = prefabObjectBush.Count;
+			}
+			if(prefabObject[i].name.IndexOf("Tree") != -1)
+			{	
+				prefabObjectTree.Add(prefabObject[i]);
+				prefabObject[i].sub_idx = prefabObjectTree.Count;
+			}
+			if(prefabObject[i].name.IndexOf("Grass") != -1)
+			{	
+				prefabObjectGrass.Add(prefabObject[i]);
+				prefabObject[i].sub_idx = prefabObjectGrass.Count;
+			}
+			if(prefabObject[i].name.IndexOf("Flower") != -1)
+			{	
+				prefabObjectFlower.Add(prefabObject[i]);
+				prefabObject[i].sub_idx = prefabObjectFlower.Count;
+			}
 		}
-		prefabObjectBrush.Sort(ListSort);
+		prefabObjectBush.Sort(ListSort);
 		prefabObjectTree.Sort(ListSort);
 		prefabObjectGrass.Sort(ListSort);
 		prefabObjectFlower.Sort(ListSort);
-
 	}
+	
 	private int ListSort(BgObject _a, BgObject _b)
 	{
-		return _a.name.CompareTo(_b.name);
+		string an, bn;
+		an = _a.name.Substring(0,_a.name.IndexOf("_"));
+		bn = _b.name.Substring(0,_b.name.IndexOf("_"));
+		if(an != bn)
+			return an.CompareTo(bn);
+		an = _a.name.Substring(_a.name.IndexOf("_")+1);
+		bn = _b.name.Substring(_b.name.IndexOf("_")+1);
+		//Debug.Log(an + " " + bn);
+		an = an.Substring(0,an.IndexOf("_"));
+		bn = bn.Substring(0,bn.IndexOf("_"));
+		//Debug.Log(an + " " + bn);
+		return int.Parse(an).CompareTo(int.Parse(bn));
 	}
 }

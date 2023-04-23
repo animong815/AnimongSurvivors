@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour
 	public UserData user;
 	public WaveData wave;
 	public EnemyData enemy;
-
+	public StageData stage;
 	private List<DataBase> listData;
 
 	public void Awake()
@@ -44,18 +44,21 @@ public class DataManager : MonoBehaviour
 		enemy = go.AddComponent<EnemyData>();
 		skill = go.AddComponent<SkillData>();
 		wave = go.AddComponent<WaveData>();
-		
+		stage = go.AddComponent<StageData>();
+
 		listData= new List<DataBase>();
 		listData.Add(global);
 		listData.Add(user);
 		listData.Add(enemy);
 		listData.Add(skill);
 		listData.Add(wave);
+		listData.Add(stage);
 	}
 
 	public void LoadFirstLoad()
 	{
-		if (is_first_load == true) return;
+		if (is_first_load == true)
+			return;
 		LoadData();
 	}
 
@@ -90,6 +93,10 @@ public class DataManager : MonoBehaviour
 		//Debug.Log("*** " + user.dic[2].value[SkillData.move_speed]);
 	
 
-		if (PlayManager.ins != null) PlayManager.ins.Init(false);
+		if (PlayManager.ins != null) 
+		{
+			PlayManager.ins.Init(false);
+			PlayManager.ins.stage.bgObject.Init();
+		}
 	}
 }
